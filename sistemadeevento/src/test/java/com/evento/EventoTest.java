@@ -40,4 +40,13 @@ class EventoTest {
         );
         assertEquals("A", evento.getNome());
     }
+
+    @Test
+    void deveRetornarCodigoInformadoAoCriarEvento() {
+        Evento evento = new Evento(
+            "musica-01", "Festival Neon Lights 2026",
+            LocalDateTime.parse("2026-12-05T20:00"), "Mineirão", BigDecimal.ZERO
+        );
+        assertEquals("musica-01", evento.getCodigo());
+    }
 }
