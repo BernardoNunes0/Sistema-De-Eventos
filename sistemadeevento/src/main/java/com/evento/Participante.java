@@ -74,5 +74,12 @@ public class Participante {
         return this.nome;
     }
 
-    
+    /**
+     * Retorna o email do participante.
+     *
+     * @return email do participante
+     */
+    public final String getEmail() {
+        return this.email;
+    }
 }
