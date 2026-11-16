@@ -1,5 +1,7 @@
 package com.evento;
 
+import java.util.Objects;
+
 /** Representa um ingresso vinculado a um evento e a um titular. */
 public final class Ingresso {
 
@@ -13,9 +15,10 @@ public final class Ingresso {
      * @param codigo  código informado para o ingresso
      * @param evento  evento vinculado ao ingresso
      * @param titular participante titular do ingresso
+     * @throws NullPointerException se o código do ingresso for nulo
      */
     public Ingresso(String codigo, Evento evento, Participante titular) {
-        this.codigo = codigo;
+        this.codigo = Objects.requireNonNull(codigo, "O código do ingresso não pode ser nulo.");
         this.evento = evento;
         this.titular = titular;
     }
