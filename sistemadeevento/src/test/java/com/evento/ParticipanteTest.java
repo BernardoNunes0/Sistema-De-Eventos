@@ -204,4 +204,160 @@ class ParticipanteTest {
         assertEquals("ana@email.com", primeiro.getEmail());
         assertEquals("bruno@email.com", segundo.getEmail());
     }
+
+    /**
+     * Verifica a atualizacao de nome e email com dados validos.
+     */
+    @Test
+    void deveAtualizarNomeEEmailComDadosValidos() {
+        final Participante participante =
+                new Participante("P001", "Ana", "ana@email.com");
+        participante.atualizarDados("Ana Maria", "novo@email.com");
+        assertEquals("Ana Maria", participante.getNome());
+        assertEquals("novo@email.com", participante.getEmail());
+    }
+
+    /**
+     * Verifica a rejeicao de atualizacao com nome nulo.
+     */
+    @Test
+    void deveRejeitarAtualizacaoComNomeNulo() {
+        final Participante participante =
+                new Participante("P001", "Ana", "ana@email.com");
+
+        assertThrows(NullPointerException.class,
+                () -> participante.atualizarDados(null, "novo@email.com"));
+
+        assertEquals("P001", participante.getCodigo());
+        assertEquals("Ana", participante.getNome());
+        assertEquals("ana@email.com", participante.getEmail());
+    }
+
+    /**
+     * Verifica a rejeicao de atualizacao com email nulo.
+     */
+    @Test
+    void deveRejeitarAtualizacaoComEmailNulo() {
+        final Participante participante =
+                new Participante("P001", "Ana", "ana@email.com");
+
+        assertThrows(NullPointerException.class,
+                () -> participante.atualizarDados("Ana Maria", null));
+
+        assertEquals("P001", participante.getCodigo());
+        assertEquals("Ana", participante.getNome());
+        assertEquals("ana@email.com", participante.getEmail());
+    }
+
+    /**
+     * Verifica a rejeicao de atualizacao com nome vazio.
+     */
+    @Test
+    void deveRejeitarAtualizacaoComNomeVazio() {
+        final Participante participante =
+                new Participante("P001", "Ana", "ana@email.com");
+
+        assertThrows(IllegalArgumentException.class,
+                () -> participante.atualizarDados("", "novo@email.com"));
+
+        assertEquals("P001", participante.getCodigo());
+        assertEquals("Ana", participante.getNome());
+        assertEquals("ana@email.com", participante.getEmail());
+    }
+
+    /**
+     * Verifica a rejeicao de atualizacao com email vazio.
+     */
+    @Test
+    void deveRejeitarAtualizacaoComEmailVazio() {
+        final Participante participante =
+                new Participante("P001", "Ana", "ana@email.com");
+
+        assertThrows(IllegalArgumentException.class,
+                () -> participante.atualizarDados("Ana Maria", ""));
+
+        assertEquals("P001", participante.getCodigo());
+        assertEquals("Ana", participante.getNome());
+        assertEquals("ana@email.com", participante.getEmail());
+    }
+
+    /**
+     * Verifica a rejeicao de atualizacao com nome contendo apenas espacos.
+     */
+    @Test
+    void deveRejeitarAtualizacaoComNomeComApenasEspacos() {
+        final Participante participante =
+                new Participante("P001", "Ana", "ana@email.com");
+
+        assertThrows(IllegalArgumentException.class,
+                () -> participante.atualizarDados("   ", "novo@email.com"));
+
+        assertEquals("P001", participante.getCodigo());
+        assertEquals("Ana", participante.getNome());
+        assertEquals("ana@email.com", participante.getEmail());
+    }
+
+    /**
+     * Verifica a rejeicao de atualizacao com email contendo apenas espacos.
+     */
+    @Test
+    void deveRejeitarAtualizacaoComEmailComApenasEspacos() {
+        final Participante participante =
+                new Participante("P001", "Ana", "ana@email.com");
+
+        assertThrows(IllegalArgumentException.class,
+                () -> participante.atualizarDados("Ana Maria", "   "));
+
+        assertEquals("P001", participante.getCodigo());
+        assertEquals("Ana", participante.getNome());
+        assertEquals("ana@email.com", participante.getEmail());
+    }
+
+    /**
+     * Verifica a preservacao do codigo apos atualizar os demais dados.
+     */
+    @Test
+    void devePreservarCodigoAposAtualizacao() {
+        final Participante participante =
+                new Participante("P001", "Ana", "ana@email.com");
+
+        participante.atualizarDados("Ana Maria", "novo@email.com");
+
+        assertEquals("P001", participante.getCodigo());
+    }
+
+    /**
+     * Verifica o armazenamento dos valores da ultima atualizacao.
+     */
+    @Test
+    void devePermitirAtualizacoesSucessivas() {
+        final Participante participante =
+                new Participante("P001", "Ana", "ana@email.com");
+
+        participante.atualizarDados("Ana Maria", "primeiro@email.com");
+        participante.atualizarDados("Ana Júlia", "ultimo@email.com");
+
+        assertEquals("P001", participante.getCodigo());
+        assertEquals("Ana Júlia", participante.getNome());
+        assertEquals("ultimo@email.com", participante.getEmail());
+    }
+
+    /**
+     * Verifica a independencia dos participantes durante uma atualizacao.
+     */
+    @Test
+    void deveAtualizarSemAlterarOutroParticipante() {
+        final Participante primeiro =
+                new Participante("P001", "Ana", "ana@email.com");
+        final Participante segundo =
+                new Participante("P002", "Bruno", "bruno@email.com");
+
+        primeiro.atualizarDados("Ana Maria", "novo@email.com");
+
+        assertEquals("Ana Maria", primeiro.getNome());
+        assertEquals("novo@email.com", primeiro.getEmail());
+        assertEquals("P002", segundo.getCodigo());
+        assertEquals("Bruno", segundo.getNome());
+        assertEquals("bruno@email.com", segundo.getEmail());
+    }
 }

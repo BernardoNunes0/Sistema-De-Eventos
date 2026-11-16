@@ -36,20 +36,9 @@ public class Participante {
         Objects.requireNonNull(nome, "O nome nao pode ser nulo.");
         Objects.requireNonNull(email, "O email nao pode ser nulo.");
 
-        if (codigo.trim().isEmpty()) {
-            throw new IllegalArgumentException(
-                    "O codigo nao pode ser vazio ou conter apenas espacos.");
-        }
-
-        if (nome.trim().isEmpty()) {
-            throw new IllegalArgumentException(
-                    "O nome nao pode ser vazio ou conter apenas espacos.");
-        }
-
-        if (email.trim().isEmpty()) {
-            throw new IllegalArgumentException(
-                    "O email nao pode ser vazio ou conter apenas espacos.");
-        }
+        validarPreenchimento(codigo, "codigo");
+        validarPreenchimento(nome, "nome");
+        validarPreenchimento(email, "email");
 
         this.codigo = codigo;
         this.nome = nome;
@@ -81,5 +70,38 @@ public class Participante {
      */
     public final String getEmail() {
         return this.email;
+    }
+
+    /**
+     * Atualiza nome e email do participante.
+     *
+     * @param novoNome novo nome do participante
+     * @param novoEmail novo email do participante
+     * @throws IllegalArgumentException se algum argumento estiver vazio ou em branco
+     * @throws NullPointerException se algum argumento for nulo
+     */
+    public final void atualizarDados(final String novoNome, final String novoEmail) {
+        Objects.requireNonNull(novoNome, "O nome nao pode ser nulo.");
+        Objects.requireNonNull(novoEmail, "O email nao pode ser nulo.");
+
+        validarPreenchimento(novoNome, "nome");
+        validarPreenchimento(novoEmail, "email");
+
+        this.nome = novoNome;
+        this.email = novoEmail;
+    }
+
+    /**
+     * Valida o preenchimento de um valor previamente verificado como nao nulo.
+     *
+     * @param valor valor a verificar
+     * @param campo nome do campo usado na mensagem de erro
+     * @throws IllegalArgumentException se o valor for vazio ou contiver apenas espacos
+     */
+    private static void validarPreenchimento(final String valor, final String campo) {
+        if (valor.trim().isEmpty()) {
+            throw new IllegalArgumentException(
+                    "O " + campo + " nao pode ser vazio ou conter apenas espacos.");
+        }
     }
 }
