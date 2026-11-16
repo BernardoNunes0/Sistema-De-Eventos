@@ -9,6 +9,7 @@ public final class Evento {
     private final String nome;
     private final String codigo;
     private BigDecimal preco;
+    private String local;
 
     /**
      * Cria um evento com os dados informados.
@@ -28,6 +29,7 @@ public final class Evento {
         // }
         // this.preco = preco;
         alterarPreco(preco);
+        this.local = local;
     }
 
     /**
@@ -66,5 +68,13 @@ public final class Evento {
             throw new IllegalArgumentException("O preço do evento deve ser zero ou positivo.");
         }
         this.preco = novoPreco;
+    }
+
+    /**
+    * Retorna o local do evento.
+    * @return local do evento
+    */
+    public String getLocal() {
+        return local;
     }
 }
