@@ -2,6 +2,8 @@ package com.evento;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 /** Gerencia o cadastro e a busca de eventos pelo código. */
 public class CadastroDeEventos {
@@ -25,5 +27,12 @@ public class CadastroDeEventos {
      */
     public Evento buscarPorCodigo(String codigo) {
         return eventos.get(codigo);
+    }
+    /**
+     * Retorna uma lista com os eventos cadastrados.
+     * @return cópia dos eventos armazenados
+     */
+    public List<Evento> listar() {
+        return new ArrayList<>(eventos.values());
     }
 }
