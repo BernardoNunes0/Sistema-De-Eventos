@@ -170,4 +170,15 @@ class ParticipanteTest {
         assertEquals("Ana", primeiro.getNome());
         assertEquals("Bruno", segundo.getNome());
     }
+
+     /**
+     * Verifica o retorno do email informado no construtor.
+     */
+    @Test
+    void deveRetornarEmailInformado() {
+        final Participante participante =
+                new Participante("P001", "Ana", "ana@email.com");
+
+        assertEquals("ana@email.com", participante.getEmail());
+    }
 }
