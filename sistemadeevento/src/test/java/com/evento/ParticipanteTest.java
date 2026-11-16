@@ -204,4 +204,16 @@ class ParticipanteTest {
         assertEquals("ana@email.com", primeiro.getEmail());
         assertEquals("bruno@email.com", segundo.getEmail());
     }
+
+    /**
+     * Verifica a atualizacao de nome e email com dados validos.
+     */
+    @Test
+    void deveAtualizarNomeEEmailComDadosValidos() {
+        final Participante participante =
+                new Participante("P001", "Ana", "ana@email.com");
+        participante.atualizarDados("Ana Maria", "novo@email.com");
+        assertEquals("Ana Maria", participante.getNome());
+        assertEquals("novo@email.com", participante.getEmail());
+    }
 }
