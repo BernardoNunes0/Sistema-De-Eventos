@@ -341,4 +341,23 @@ class ParticipanteTest {
         assertEquals("Ana Júlia", participante.getNome());
         assertEquals("ultimo@email.com", participante.getEmail());
     }
+
+    /**
+     * Verifica a independencia dos participantes durante uma atualizacao.
+     */
+    @Test
+    void deveAtualizarSemAlterarOutroParticipante() {
+        final Participante primeiro =
+                new Participante("P001", "Ana", "ana@email.com");
+        final Participante segundo =
+                new Participante("P002", "Bruno", "bruno@email.com");
+
+        primeiro.atualizarDados("Ana Maria", "novo@email.com");
+
+        assertEquals("Ana Maria", primeiro.getNome());
+        assertEquals("novo@email.com", primeiro.getEmail());
+        assertEquals("P002", segundo.getCodigo());
+        assertEquals("Bruno", segundo.getNome());
+        assertEquals("bruno@email.com", segundo.getEmail());
+    }
 }

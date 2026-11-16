@@ -83,28 +83,5 @@ public class Participante {
         return this.email;
     }
 
-    /**
-     * Atualiza os dados do participante.
-     *
-     * @param novoNome novo nome do participante
-     * @param novoEmail novo email do participante
-     * @throws NullPointerException se o novo nome ou email for nulo
-     * @throws IllegalArgumentException se o novo nome ou email estiver vazio
-     */
-    public final void atualizarDados(final String novoNome, final String novoEmail) {
-        Objects.requireNonNull(novoNome, "O nome nao pode ser nulo.");
-        Objects.requireNonNull(novoEmail, "O email nao pode ser nulo.");
-
-        if (novoNome.isEmpty()) {
-            throw new IllegalArgumentException("O nome nao pode estar vazio.");
-        }
-        if (novoEmail.trim().isEmpty()) {
-            throw new IllegalArgumentException("O email nao pode estar vazio.");
-        }
-        if (novoNome.trim().isEmpty()) {
-            throw new IllegalArgumentException("O nome nao pode estar vazio.");
-        }
-        this.nome = novoNome;
-        this.email = novoEmail;
-    }
+    
 }
