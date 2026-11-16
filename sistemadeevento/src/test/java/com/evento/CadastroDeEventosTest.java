@@ -116,4 +116,24 @@ class CadastroDeEventosTest {
 
         assertSame(evento, cadastro.buscarPorCodigo("EVT-1"));
     }
+
+    @Test
+    void deveManterOutrosEventosAoExcluirUmEvento() {
+        CadastroDeEventos cadastro = new CadastroDeEventos();
+        LocalDateTime data = LocalDateTime.of(2026, 12, 5, 20, 0);
+
+        Evento removido = new Evento(
+            "EVT-7", "Festival A", data, "Mineirão", BigDecimal.ZERO
+        );
+        Evento mantido = new Evento(
+            "EVT-8", "Festival B", data, "Mineirão", BigDecimal.ZERO
+        );
+
+        cadastro.cadastrar(removido);
+        cadastro.cadastrar(mantido);
+        cadastro.excluir("EVT-7");
+
+        assertNull(cadastro.buscarPorCodigo("EVT-7"));
+        assertSame(mantido, cadastro.buscarPorCodigo("EVT-8"));
+    }
 }
