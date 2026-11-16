@@ -214,4 +214,19 @@ class EventoTest {
         assertEquals(novaData, evento.getData());
         assertEquals("Palácio das Artes", evento.getLocal());
     }
+
+    @Test
+    void devePreservarCodigoEPrecoAoAlterarDados() {
+        BigDecimal precoOriginal = new BigDecimal("120.00");
+        LocalDateTime dataOriginal = LocalDateTime.parse("2026-12-05T20:00");
+        LocalDateTime novaData = LocalDateTime.parse("2026-12-12T18:30");
+        Evento evento = new Evento(
+            "musica-01", "Festival Neon Lights", dataOriginal, "Mineirão", precoOriginal
+        );
+
+        evento.alterarDados("Festival de Jazz", novaData, "Palácio das Artes");
+
+        assertEquals("musica-01", evento.getCodigo());
+        assertEquals(0, precoOriginal.compareTo(evento.getPreco()));
+    }
 }
