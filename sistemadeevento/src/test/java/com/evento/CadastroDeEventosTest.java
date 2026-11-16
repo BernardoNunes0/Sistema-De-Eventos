@@ -225,4 +225,24 @@ class CadastroDeEventosTest {
         assertSame(evento, cadastro.buscarPorCodigo("EVT-12"));
         assertEquals(1, cadastro.listar().size());
     }
+
+    @Test
+    void deveCadastrarEventosComMesmoNomeECodigosDiferentes() {
+        CadastroDeEventos cadastro = new CadastroDeEventos();
+        LocalDateTime data = LocalDateTime.of(2026, 12, 5, 20, 0);
+
+        Evento primeiro = new Evento(
+            "EVT-13", "Festival", data, "Mineirão", BigDecimal.ZERO
+        );
+        Evento segundo = new Evento(
+            "EVT-14", "Festival", data, "Mineirão", BigDecimal.ZERO
+        );
+
+        cadastro.cadastrar(primeiro);
+        cadastro.cadastrar(segundo);
+
+        assertSame(primeiro, cadastro.buscarPorCodigo("EVT-13"));
+        assertSame(segundo, cadastro.buscarPorCodigo("EVT-14"));
+        assertEquals(2, cadastro.listar().size());
+    }
 }
