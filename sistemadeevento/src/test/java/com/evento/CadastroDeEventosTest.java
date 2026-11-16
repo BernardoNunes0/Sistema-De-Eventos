@@ -200,4 +200,11 @@ class CadastroDeEventosTest {
 
         assertSame(segundo, cadastro.buscarPorCodigo("EVT-11"));
     }
+
+    @Test
+    void deveRetornarListaVaziaQuandoNaoHaEventosCadastrados() {
+        CadastroDeEventos cadastro = new CadastroDeEventos();
+
+        assertTrue(cadastro.listar().isEmpty());
+    }
 }
