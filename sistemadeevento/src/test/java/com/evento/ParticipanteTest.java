@@ -80,4 +80,13 @@ class ParticipanteTest {
         assertThrows(IllegalArgumentException.class,
                 () -> new Participante("   ", "Ana", "ana@email.com"));
     }
+
+    /**
+     * Verifica a rejeicao de nome contendo apenas espacos.
+     */
+    @Test
+    void deveRejeitarNomeComApenasEspacos() {
+        assertThrows(IllegalArgumentException.class,
+                () -> new Participante("P001", "   ", "ana@email.com"));
+    }
 }
