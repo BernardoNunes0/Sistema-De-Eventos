@@ -23,10 +23,11 @@ public final class Evento {
         this.nome = nomeInformado;
         this.codigo = codigo;
         //this.preco = preco;
-        if (preco.signum() < 0) {
-            throw new IllegalArgumentException("O preço do evento deve ser zero ou positivo.");
-        }
-        this.preco = preco;
+        // if (preco.signum() < 0) {
+        //     throw new IllegalArgumentException("O preço do evento deve ser zero ou positivo.");
+        // }
+        // this.preco = preco;
+        alterarPreco(preco);
     }
 
     /**
