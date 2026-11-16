@@ -35,4 +35,17 @@ public class CadastroDeEventos {
     public List<Evento> listar() {
         return new ArrayList<>(eventos.values());
     }
+
+    /**
+     * Atualiza um evento que já está cadastrado.
+     * @param evento evento com os dados atualizados
+     */
+    public void atualizar(Evento evento) {
+        // Só atualiza se o código já estiver cadastrado.
+        if (!eventos.containsKey(evento.getCodigo())) {
+            throw new IllegalArgumentException("Evento não encontrado.");
+        }
+
+        eventos.put(evento.getCodigo(), evento);
+    }
 }
