@@ -109,4 +109,15 @@ class ParticipanteTest {
                 new Participante("P123", "Ana", "ana@email.com");
         assertEquals("P123", participante.getCodigo());
     }
+
+    /**
+     * Verifica a preservacao dos zeros no codigo.
+     */
+    @Test
+    void devePreservarZerosDoCodigo() {
+        final Participante participante =
+                new Participante("P0001", "Ana", "ana@email.com");
+
+        assertEquals("P0001", participante.getCodigo());
+    }
 }
