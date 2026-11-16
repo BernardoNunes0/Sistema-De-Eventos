@@ -27,4 +27,13 @@ class ParticipanteTest {
                 () -> new Participante(null, "Ana", "ana@email.com"));
     }
 
+    /**
+     * Verifica a rejeicao de nome nulo.
+     */
+    @Test
+    void deveRejeitarNomeNulo() {
+        assertThrows(NullPointerException.class,
+                () -> new Participante("P001", null, "ana@email.com"));
+    }
+
 }
