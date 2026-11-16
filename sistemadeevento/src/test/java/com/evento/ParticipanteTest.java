@@ -280,4 +280,20 @@ class ParticipanteTest {
         assertEquals("Ana", participante.getNome());
         assertEquals("ana@email.com", participante.getEmail());
     }
+
+    /**
+     * Verifica a rejeicao de atualizacao com nome contendo apenas espacos.
+     */
+    @Test
+    void deveRejeitarAtualizacaoComNomeComApenasEspacos() {
+        final Participante participante =
+                new Participante("P001", "Ana", "ana@email.com");
+
+        assertThrows(IllegalArgumentException.class,
+                () -> participante.atualizarDados("   ", "novo@email.com"));
+
+        assertEquals("P001", participante.getCodigo());
+        assertEquals("Ana", participante.getNome());
+        assertEquals("ana@email.com", participante.getEmail());
+    }
 }
