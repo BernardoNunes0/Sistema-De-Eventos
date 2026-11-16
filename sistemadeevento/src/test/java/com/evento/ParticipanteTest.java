@@ -216,4 +216,20 @@ class ParticipanteTest {
         assertEquals("Ana Maria", participante.getNome());
         assertEquals("novo@email.com", participante.getEmail());
     }
+
+    /**
+     * Verifica a rejeicao de atualizacao com nome nulo.
+     */
+    @Test
+    void deveRejeitarAtualizacaoComNomeNulo() {
+        final Participante participante =
+                new Participante("P001", "Ana", "ana@email.com");
+
+        assertThrows(NullPointerException.class,
+                () -> participante.atualizarDados(null, "novo@email.com"));
+
+        assertEquals("P001", participante.getCodigo());
+        assertEquals("Ana", participante.getNome());
+        assertEquals("ana@email.com", participante.getEmail());
+    }
 }
