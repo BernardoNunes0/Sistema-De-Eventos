@@ -151,4 +151,28 @@ class CadastroDeEventosTest {
             () -> cadastro.atualizar(evento)
         );
     }
+
+    @Test
+    void deveAtualizarApenasEventoComMesmoCodigo() {
+        CadastroDeEventos cadastro = new CadastroDeEventos();
+        LocalDateTime data = LocalDateTime.of(2026, 12, 5, 20, 0);
+
+        Evento original = new Evento(
+            "EVT-5", "Festival antigo", data, "Mineirão", BigDecimal.ZERO
+        );
+        Evento atualizado = new Evento(
+            "EVT-5", "Festival novo", data, "Mineirão", BigDecimal.ZERO
+        );
+        Evento outro = new Evento(
+            "EVT-6", "Outro festival", data, "Mineirão", BigDecimal.ZERO
+        );
+
+        cadastro.cadastrar(original);
+        cadastro.cadastrar(outro);
+        cadastro.atualizar(atualizado);
+
+        assertSame(atualizado, cadastro.buscarPorCodigo("EVT-5"));
+        assertSame(outro, cadastro.buscarPorCodigo("EVT-6"));
+        assertEquals(2, cadastro.listar().size());
+    }
 }
