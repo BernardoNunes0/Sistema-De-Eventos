@@ -156,4 +156,18 @@ class ParticipanteTest {
 
         assertEquals("Ana Júlia", participante.getNome());
     }
+
+    /**
+     * Verifica a independencia dos nomes entre participantes.
+     */
+    @Test
+    void deveManterNomesIndependentesEntreParticipantes() {
+        final Participante primeiro =
+                new Participante("P001", "Ana", "ana@email.com");
+        final Participante segundo =
+                new Participante("P002", "Bruno", "bruno@email.com");
+
+        assertEquals("Ana", primeiro.getNome());
+        assertEquals("Bruno", segundo.getNome());
+    }
 }
