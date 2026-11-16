@@ -10,6 +10,7 @@ public final class Evento {
     private final String codigo;
     private BigDecimal preco;
     private String local;
+    private LocalDateTime data;
 
     /**
      * Cria um evento com os dados informados.
@@ -30,6 +31,7 @@ public final class Evento {
         // this.preco = preco;
         alterarPreco(preco);
         this.local = local;
+        this.data = data;
     }
 
     /**
@@ -76,5 +78,13 @@ public final class Evento {
     */
     public String getLocal() {
         return local;
+    }
+
+    /**
+    * Retorna a data e o horário do evento.
+    * @return data e horário informados
+    */
+    public LocalDateTime getData() {
+        return data;
     }
 }
