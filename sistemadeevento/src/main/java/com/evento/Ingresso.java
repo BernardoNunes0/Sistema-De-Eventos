@@ -3,19 +3,30 @@ package com.evento;
 /** Representa um ingresso vinculado a um evento e a um titular. */
 public final class Ingresso {
 
+    private final String codigo;
     private final Evento evento;
     private final Participante titular;
 
     /**
      * Cria um ingresso para o evento e o titular informados.
      *
-     * @param codigo código informado para o ingresso
-     * @param evento evento vinculado ao ingresso
+     * @param codigo  código informado para o ingresso
+     * @param evento  evento vinculado ao ingresso
      * @param titular participante titular do ingresso
      */
     public Ingresso(String codigo, Evento evento, Participante titular) {
+        this.codigo = codigo;
         this.evento = evento;
         this.titular = titular;
+    }
+
+    /**
+     * Retorna o código do ingresso.
+     *
+     * @return código informado na criação
+     */
+    public String getCodigo() {
+        return codigo;
     }
 
     /**
