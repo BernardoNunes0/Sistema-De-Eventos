@@ -44,4 +44,13 @@ class ParticipanteTest {
         assertThrows(NullPointerException.class,
                 () -> new Participante("P001", "Ana", null));
     }
+
+    /**
+     * Verifica a rejeicao de identificador vazio.
+     */
+    @Test
+    void deveRejeitarIdentificadorVazio() {
+        assertThrows(IllegalArgumentException.class,
+                () -> new Participante("", "Ana", "ana@email.com"));
+    }
 }
