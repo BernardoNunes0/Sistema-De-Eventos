@@ -13,7 +13,7 @@ public class Participante {
      * @param codigo identificador do participante
      * @param nome nome do participante
      * @param email email do participante
-     * @throws IllegalArgumentException se houver argumento vazio ou codigo apenas com espacos
+     * @throws IllegalArgumentException se algum argumento violar as regras de preenchimento
      * @throws NullPointerException se algum argumento for nulo
      */
     public Participante(final String codigo, final String nome, final String email) {
@@ -26,8 +26,9 @@ public class Participante {
                     "O codigo nao pode ser vazio ou conter apenas espacos.");
         }
 
-        if (nome.isEmpty()) {
-            throw new IllegalArgumentException("O nome nao pode ser vazio.");
+        if (nome.trim().isEmpty()) {
+            throw new IllegalArgumentException(
+                    "O nome nao pode ser vazio ou conter apenas espacos.");
         }
 
         if (email.isEmpty()) {
