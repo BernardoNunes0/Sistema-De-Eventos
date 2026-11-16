@@ -191,4 +191,17 @@ class ParticipanteTest {
 
         assertEquals("ana.silva@alunos.exemplo.com", participante.getEmail());
     }
+
+    /**
+     * Verifica a independencia dos emails entre participantes.
+     */
+    @Test
+    void deveManterEmailsIndependentesEntreParticipantes() {
+        final Participante primeiro =
+                new Participante("P001", "Ana", "ana@email.com");
+        final Participante segundo =
+                new Participante("P002", "Bruno", "bruno@email.com");
+        assertEquals("ana@email.com", primeiro.getEmail());
+        assertEquals("bruno@email.com", segundo.getEmail());
+    }
 }
