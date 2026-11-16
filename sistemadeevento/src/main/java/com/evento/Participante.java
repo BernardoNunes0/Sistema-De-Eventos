@@ -82,4 +82,15 @@ public class Participante {
     public final String getEmail() {
         return this.email;
     }
+
+    /**
+     * Atualiza o nome e o email do participante.
+     *
+     * @param novoNome novo nome do participante
+     * @param novoEmail novo email do participante
+     */
+    public final void atualizarDados(final String novoNome, final String novoEmail) {
+        this.nome = novoNome;
+        this.email = novoEmail;
+    }
 }
