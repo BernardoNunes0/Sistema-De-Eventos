@@ -89,10 +89,15 @@ public class Participante {
      * @param novoNome novo nome do participante
      * @param novoEmail novo email do participante
      * @throws NullPointerException se o novo nome ou email for nulo
+     * @throws IllegalArgumentException se o novo nome estiver vazio
      */
     public final void atualizarDados(final String novoNome, final String novoEmail) {
         Objects.requireNonNull(novoNome, "O nome nao pode ser nulo.");
         Objects.requireNonNull(novoEmail, "O email nao pode ser nulo.");
+
+        if (novoNome.isEmpty()) {
+            throw new IllegalArgumentException("O nome nao pode estar vazio.");
+        }
 
         this.nome = novoNome;
         this.email = novoEmail;
