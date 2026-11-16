@@ -175,4 +175,11 @@ class CadastroDeEventosTest {
         assertSame(outro, cadastro.buscarPorCodigo("EVT-6"));
         assertEquals(2, cadastro.listar().size());
     }
+
+    @Test
+    void deveRetornarNullAoBuscarCodigoNaoCadastrado() {
+        CadastroDeEventos cadastro = new CadastroDeEventos();
+
+        assertNull(cadastro.buscarPorCodigo("EVT-999"));
+    }
 }
