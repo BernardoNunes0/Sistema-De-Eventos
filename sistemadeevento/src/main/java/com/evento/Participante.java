@@ -88,10 +88,12 @@ public class Participante {
      *
      * @param novoNome novo nome do participante
      * @param novoEmail novo email do participante
-     * @throws NullPointerException se o novo nome for nulo
+     * @throws NullPointerException se o novo nome ou email for nulo
      */
     public final void atualizarDados(final String novoNome, final String novoEmail) {
         Objects.requireNonNull(novoNome, "O nome nao pode ser nulo.");
+        Objects.requireNonNull(novoEmail, "O email nao pode ser nulo.");
+
         this.nome = novoNome;
         this.email = novoEmail;
     }
