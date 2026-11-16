@@ -136,4 +136,19 @@ class CadastroDeEventosTest {
         assertNull(cadastro.buscarPorCodigo("EVT-7"));
         assertSame(mantido, cadastro.buscarPorCodigo("EVT-8"));
     }
+
+    @Test
+    void deveImpedirAtualizacaoDeEventoInexistente() {
+        CadastroDeEventos cadastro = new CadastroDeEventos();
+        LocalDateTime data = LocalDateTime.of(2026, 12, 5, 20, 0);
+
+        Evento evento = new Evento(
+            "EVT-999", "Festival", data, "Mineirão", BigDecimal.ZERO
+        );
+
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> cadastro.atualizar(evento)
+        );
+    }
 }
