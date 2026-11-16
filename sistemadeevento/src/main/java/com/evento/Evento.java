@@ -6,7 +6,8 @@ import java.time.LocalDateTime;
 /** Representa um evento do sistema. */
 public final class Evento {
 
-    private final String nome;
+    // private final String nome;
+    private String nome;
     private final String codigo;
     private BigDecimal preco;
     private String local;
@@ -86,5 +87,17 @@ public final class Evento {
     */
     public LocalDateTime getData() {
         return data;
+    }
+
+    /**
+     * Altera o nome, a data e o local do evento.
+     * @param novoNome novo nome do evento
+     * @param novaData nova data e horário do evento
+     * @param novoLocal novo local do evento
+     */
+    public void alterarDados(String novoNome, LocalDateTime novaData, String novoLocal) {
+        this.nome = novoNome;
+        this.data = novaData;
+        this.local = novoLocal;
     }
 }
