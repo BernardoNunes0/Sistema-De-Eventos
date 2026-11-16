@@ -3,11 +3,13 @@ package com.evento;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * Testes da classe Participante.
  */
 class ParticipanteTest {
+
     /**
      * Verifica a criacao de um participante com dados validos.
      */
@@ -15,4 +17,14 @@ class ParticipanteTest {
     void deveCriarParticipanteComDadosValidos() {
         assertDoesNotThrow(() -> new Participante("P001", "Ana", "ana@email.com"));
     }
+
+    /**
+     * Verifica a rejeicao de identificador nulo.
+     */
+    @Test
+    void deveRejeitarIdentificadorNulo() {
+        assertThrows(NullPointerException.class,
+                () -> new Participante(null, "Ana", "ana@email.com"));
+    }
+
 }
