@@ -207,4 +207,22 @@ class CadastroDeEventosTest {
 
         assertTrue(cadastro.listar().isEmpty());
     }
+
+    @Test
+    void deveRetornarCopiaDaListaSemAlterarCadastro() {
+        CadastroDeEventos cadastro = new CadastroDeEventos();
+        LocalDateTime data = LocalDateTime.of(2026, 12, 5, 20, 0);
+
+        Evento evento = new Evento(
+            "EVT-12", "Festival", data, "Mineirão", BigDecimal.ZERO
+        );
+
+        cadastro.cadastrar(evento);
+
+        List<Evento> eventos = cadastro.listar();
+        eventos.clear();
+
+        assertSame(evento, cadastro.buscarPorCodigo("EVT-12"));
+        assertEquals(1, cadastro.listar().size());
+    }
 }
