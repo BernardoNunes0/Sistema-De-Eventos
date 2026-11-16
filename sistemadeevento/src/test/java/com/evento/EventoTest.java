@@ -199,4 +199,19 @@ class EventoTest {
         assertEquals(inicio, abertura.getData());
         assertEquals(encerramento, festival.getData());
     }
+
+    @Test
+    void deveAlterarNomeDataELocalDoEvento() {
+        LocalDateTime dataOriginal = LocalDateTime.parse("2026-12-05T20:00");
+        LocalDateTime novaData = LocalDateTime.parse("2026-12-12T18:30");
+        Evento evento = new Evento(
+            "musica-01", "Festival Neon Lights", dataOriginal, "Mineirão", BigDecimal.ZERO
+        );
+
+        evento.alterarDados("Festival de Jazz", novaData, "Palácio das Artes");
+
+        assertEquals("Festival de Jazz", evento.getNome());
+        assertEquals(novaData, evento.getData());
+        assertEquals("Palácio das Artes", evento.getLocal());
+    }
 }
