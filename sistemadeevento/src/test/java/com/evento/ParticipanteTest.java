@@ -62,4 +62,13 @@ class ParticipanteTest {
         assertThrows(IllegalArgumentException.class,
                 () -> new Participante("P001", "", "ana@email.com"));
     }
+
+    /**
+     * Verifica a rejeicao de email vazio.
+     */
+    @Test
+    void deveRejeitarEmailVazio() {
+        assertThrows(IllegalArgumentException.class,
+                () -> new Participante("P001", "Ana", ""));
+    }
 }
