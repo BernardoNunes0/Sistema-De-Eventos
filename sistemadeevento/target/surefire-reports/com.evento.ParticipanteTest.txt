@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.evento.ParticipanteTest
 -------------------------------------------------------------------------------
-Tests run: 23, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.135 s - in com.evento.ParticipanteTest
+Tests run: 24, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.106 s <<< FAILURE! - in com.evento.ParticipanteTest
+com.evento.ParticipanteTest.deveRejeitarAtualizacaoComEmailVazio  Time elapsed: 0.002 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown.
+	at com.evento.ParticipanteTest.deveRejeitarAtualizacaoComEmailVazio(ParticipanteTest.java:276)
+
