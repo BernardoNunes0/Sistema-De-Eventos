@@ -13,6 +13,11 @@ public class Participante {
     private final String codigo;
 
     /**
+     * Nome do participante.
+     */
+    private String nome;
+
+    /**
      * Cria um participante com dados obrigatorios.
      *
      * @param codigo identificador do participante
@@ -42,6 +47,7 @@ public class Participante {
         }
 
         this.codigo = codigo;
+        this.nome = nome;
     }
 
     /**
@@ -51,5 +57,14 @@ public class Participante {
      */
     public final String getCodigo() {
         return this.codigo;
+    }
+
+    /**
+     * Retorna o nome do participante.
+     *
+     * @return nome do participante
+     */
+    public final String getNome() {
+        return this.nome;
     }
 }
