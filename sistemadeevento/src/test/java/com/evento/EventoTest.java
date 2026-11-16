@@ -152,7 +152,6 @@ class EventoTest {
         Evento segundo = new Evento(
             "musica-02", "Festival de Jazz", data, "Palácio das Artes", BigDecimal.ZERO
         );
-
         assertEquals("Mineirão", primeiro.getLocal());
         assertEquals("Palácio das Artes", segundo.getLocal());
     }
@@ -164,7 +163,6 @@ class EventoTest {
             "musica-01", "Festival Neon Lights 2026",
             LocalDateTime.parse("2026-12-05T20:00"), local, BigDecimal.ZERO
         );
-
         assertEquals(local, evento.getLocal());
     }
 
@@ -174,7 +172,15 @@ class EventoTest {
         Evento evento = new Evento(
             "musica-01", "Festival Neon Lights 2026", data, "Mineirão", BigDecimal.ZERO
         );
-
         assertEquals(data, evento.getData());
+    }
+
+    @Test
+    void devePreservarDataDoEventoAMeiaNoite() {
+        LocalDateTime meiaNoite = LocalDateTime.parse("2027-01-01T00:00");
+        Evento evento = new Evento(
+            "musica-01", "Show da Virada", meiaNoite, "Mineirão", BigDecimal.ZERO
+        );
+        assertEquals(meiaNoite, evento.getData());
     }
 }
