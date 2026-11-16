@@ -167,4 +167,14 @@ class EventoTest {
 
         assertEquals(local, evento.getLocal());
     }
+
+    @Test
+    void deveRetornarDataEHorarioInformadosAoCriarEvento() {
+        LocalDateTime data = LocalDateTime.parse("2026-12-05T20:30");
+        Evento evento = new Evento(
+            "musica-01", "Festival Neon Lights 2026", data, "Mineirão", BigDecimal.ZERO
+        );
+
+        assertEquals(data, evento.getData());
+    }
 }
