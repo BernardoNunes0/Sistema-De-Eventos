@@ -89,4 +89,13 @@ class ParticipanteTest {
         assertThrows(IllegalArgumentException.class,
                 () -> new Participante("P001", "   ", "ana@email.com"));
     }
+
+    /**
+     * Verifica a rejeicao de email contendo apenas espacos.
+     */
+    @Test
+    void deveRejeitarEmailComApenasEspacos() {
+        assertThrows(IllegalArgumentException.class,
+                () -> new Participante("P001", "Ana", "   "));
+    }
 }
