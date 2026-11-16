@@ -1,0 +1,106 @@
+package com.evento;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
+/** Representa um evento do sistema. */
+public final class Evento {
+
+    // private final String nome;
+    private String nome;
+    private final String codigo;
+    private BigDecimal preco;
+    private String local;
+    private LocalDateTime data;
+
+    /**
+     * Cria um evento com os dados informados.
+     * @param codigo código do evento
+     * @param nomeInformado nome do evento
+     * @param data data e horário do evento
+     * @param local local do evento
+     * @param preco preço do evento
+     */
+    public Evento(String codigo, String nomeInformado, LocalDateTime data,
+                  String local, BigDecimal preco) {
+        this.nome = nomeInformado;
+        this.codigo = codigo;
+        //this.preco = preco;
+        // if (preco.signum() < 0) {
+        //     throw new IllegalArgumentException("O preço do evento deve ser zero ou positivo.");
+        // }
+        // this.preco = preco;
+        alterarPreco(preco);
+        this.local = local;
+        this.data = data;
+    }
+
+    /**
+     * Retorna o nome do evento.
+     * @return nome informado na criação
+     */
+    public String getNome() {
+        return nome;
+    }
+
+    /**
+    * Retorna o código do evento.
+    * @return código informado na criação
+    */
+    public String getCodigo() {
+        return codigo;
+    }
+
+    /**
+     * Retorna o preço do evento.
+     * @return preço do evento
+     */
+    public BigDecimal getPreco() {
+        return preco;
+    }
+
+    /**
+    //  * Altera o preço do evento.
+    //  * @param novoPreco novo preço do evento
+    */
+    // public void alterarPreco(BigDecimal novoPreco) {
+    //     this.preco = novoPreco;
+    // }
+    public void alterarPreco(BigDecimal novoPreco) {
+        if (novoPreco.signum() < 0) {
+            throw new IllegalArgumentException("O preço do evento deve ser zero ou positivo.");
+        }
+        this.preco = novoPreco;
+    }
+
+    /**
+    * Retorna o local do evento.
+    * @return local do evento
+    */
+    public String getLocal() {
+        return local;
+    }
+
+    /**
+    * Retorna a data e o horário do evento.
+    * @return data e horário informados
+    */
+    public LocalDateTime getData() {
+        return data;
+    }
+
+    /**
+     * Altera o nome, a data e o local do evento.
+     * @param novoNome novo nome do evento
+     * @param novaData nova data e horário do evento
+     * @param novoLocal novo local do evento
+     */
+    public void alterarDados(String novoNome, LocalDateTime novaData, String novoLocal) {
+        if (novaData == null) {
+            throw new IllegalArgumentException("A data do evento deve ser informada.");
+        }
+        this.nome = novoNome;
+        this.data = novaData;
+        this.local = novoLocal;
+    }
+}
