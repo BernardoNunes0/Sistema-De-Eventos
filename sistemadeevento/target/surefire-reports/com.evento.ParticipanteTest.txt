@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.evento.ParticipanteTest
 -------------------------------------------------------------------------------
-Tests run: 21, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.134 s - in com.evento.ParticipanteTest
+Tests run: 22, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.175 s <<< FAILURE! - in com.evento.ParticipanteTest
+com.evento.ParticipanteTest.deveRejeitarAtualizacaoComEmailNulo  Time elapsed: 0.017 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Expected java.lang.NullPointerException to be thrown, but nothing was thrown.
+	at com.evento.ParticipanteTest.deveRejeitarAtualizacaoComEmailNulo(ParticipanteTest.java:244)
+
