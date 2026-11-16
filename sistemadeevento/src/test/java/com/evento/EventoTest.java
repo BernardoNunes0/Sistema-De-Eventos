@@ -156,4 +156,15 @@ class EventoTest {
         assertEquals("Mineirão", primeiro.getLocal());
         assertEquals("Palácio das Artes", segundo.getLocal());
     }
+
+    @Test
+    void devePreservarNomeCompletoDoLocal() {
+        String local = "Mineirão - Portão 3";
+        Evento evento = new Evento(
+            "musica-01", "Festival Neon Lights 2026",
+            LocalDateTime.parse("2026-12-05T20:00"), local, BigDecimal.ZERO
+        );
+
+        assertEquals(local, evento.getLocal());
+    }
 }
