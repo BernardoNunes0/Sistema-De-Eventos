@@ -8,6 +8,11 @@ import java.util.Objects;
 public class Participante {
 
     /**
+     * Codigo do participante.
+     */
+    private final String codigo;
+
+    /**
      * Cria um participante com dados obrigatorios.
      *
      * @param codigo identificador do participante
@@ -35,5 +40,16 @@ public class Participante {
             throw new IllegalArgumentException(
                     "O email nao pode ser vazio ou conter apenas espacos.");
         }
+
+        this.codigo = codigo;
+    }
+
+    /**
+     * Retorna o codigo do participante.
+     *
+     * @return codigo do participante
+     */
+    public final String getCodigo() {
+        return this.codigo;
     }
 }
