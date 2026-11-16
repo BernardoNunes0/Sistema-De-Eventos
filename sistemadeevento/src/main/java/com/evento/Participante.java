@@ -98,14 +98,12 @@ public class Participante {
         if (novoNome.isEmpty()) {
             throw new IllegalArgumentException("O nome nao pode estar vazio.");
         }
-
-        if (novoEmail.isEmpty()) {
+        if (novoEmail.trim().isEmpty()) {
             throw new IllegalArgumentException("O email nao pode estar vazio.");
         }
         if (novoNome.trim().isEmpty()) {
             throw new IllegalArgumentException("O nome nao pode estar vazio.");
         }
-
         this.nome = novoNome;
         this.email = novoEmail;
     }
