@@ -6,12 +6,28 @@ import java.util.List;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertSame;
 
 class CadastroDeEventosTest {
+
+    @Test
+    void deveExcluirEventoCadastrado() {
+        CadastroDeEventos cadastro = new CadastroDeEventos();
+        LocalDateTime data = LocalDateTime.of(2026, 12, 5, 20, 0);
+
+        Evento evento = new Evento(
+            "EVT-6", "Festival", data, "Mineirão", BigDecimal.ZERO
+        );
+
+        cadastro.cadastrar(evento);
+        cadastro.excluir("EVT-6");
+
+        assertNull(cadastro.buscarPorCodigo("EVT-6"));
+    }
 
     @Test
     void deveAtualizarEventoCadastrado() {
