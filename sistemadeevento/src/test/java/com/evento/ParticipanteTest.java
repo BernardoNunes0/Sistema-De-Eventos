@@ -171,7 +171,7 @@ class ParticipanteTest {
         assertEquals("Bruno", segundo.getNome());
     }
 
-     /**
+    /**
      * Verifica o retorno do email informado no construtor.
      */
     @Test

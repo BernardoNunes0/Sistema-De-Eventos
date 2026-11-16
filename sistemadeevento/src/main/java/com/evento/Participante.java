@@ -18,6 +18,11 @@ public class Participante {
     private String nome;
 
     /**
+     * Email do participante.
+     */
+    private String email;
+
+    /**
      * Cria um participante com dados obrigatorios.
      *
      * @param codigo identificador do participante
@@ -48,6 +53,7 @@ public class Participante {
 
         this.codigo = codigo;
         this.nome = nome;
+        this.email = email;
     }
 
     /**
@@ -66,5 +72,14 @@ public class Participante {
      */
     public final String getNome() {
         return this.nome;
+    }
+
+    /**
+     * Retorna o email do participante.
+     *
+     * @return email do participante
+     */
+    public final String getEmail() {
+        return this.email;
     }
 }
