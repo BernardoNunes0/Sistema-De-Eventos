@@ -58,13 +58,4 @@ public class Participante {
     public final String getCodigo() {
         return this.codigo;
     }
-
-    /**
-     * Retorna o nome do participante.
-     *
-     * @return nome do participante
-     */
-    public final String getNome() {
-        return this.nome;
-    }
 }

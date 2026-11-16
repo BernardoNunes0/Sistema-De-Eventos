@@ -145,4 +145,15 @@ class ParticipanteTest {
 
         assertEquals("Ana", participante.getNome());
     }
+
+    /**
+     * Verifica a preservacao de nome composto e acentuado.
+     */
+    @Test
+    void devePreservarNomeCompostoEAcentuado() {
+        final Participante participante =
+                new Participante("P001", "Ana Júlia", "ana@email.com");
+
+        assertEquals("Ana Júlia", participante.getNome());
+    }
 }

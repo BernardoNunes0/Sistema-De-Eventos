@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.evento.ParticipanteTest" time="0.082" tests="14" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.evento.ParticipanteTest" time="0.157" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="25"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -11,8 +11,9 @@
     <property name="java.vm.specification.version" value="25"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="/usr/local/sdkman/candidates/java/25.0.5.0+2-ms/lib"/>
-    <property name="sun.java.command" value="/workspaces/Sistema-De-Eventos/sistemadeevento/target/surefire/surefirebooter12988633234970887670.jar /workspaces/Sistema-De-Eventos/sistemadeevento/target/surefire 2026-11-16T10-53-50_198-jvmRun1 surefire9507415211880296246tmp surefire_05791362224637459185tmp"/>
+    <property name="sun.java.command" value="/workspaces/Sistema-De-Eventos/sistemadeevento/target/surefire/surefirebooter14197860543468768109.jar /workspaces/Sistema-De-Eventos/sistemadeevento/target/surefire 2026-11-16T10-58-05_882-jvmRun1 surefire1508221208499508827tmp surefire_07954271050085116085tmp"/>
     <property name="jdk.debug" value="release"/>
+    <property name="test" value="com.evento.ParticipanteTest#devePreservarNomeCompostoEAcentuado"/>
     <property name="surefire.test.class.path" value="/workspaces/Sistema-De-Eventos/sistemadeevento/target/test-classes:/workspaces/Sistema-De-Eventos/sistemadeevento/target/classes:/home/codespace/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.6.0/junit-jupiter-api-5.6.0.jar:/home/codespace/.m2/repository/org/apiguardian/apiguardian-api/1.1.0/apiguardian-api-1.1.0.jar:/home/codespace/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/home/codespace/.m2/repository/org/junit/platform/junit-platform-commons/1.6.0/junit-platform-commons-1.6.0.jar:/home/codespace/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.6.0/junit-jupiter-engine-5.6.0.jar:/home/codespace/.m2/repository/org/junit/platform/junit-platform-engine/1.6.0/junit-platform-engine-1.6.0.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="/home/codespace"/>
@@ -26,7 +27,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
-    <property name="surefire.real.class.path" value="/workspaces/Sistema-De-Eventos/sistemadeevento/target/surefire/surefirebooter12988633234970887670.jar"/>
+    <property name="surefire.real.class.path" value="/workspaces/Sistema-De-Eventos/sistemadeevento/target/surefire/surefirebooter14197860543468768109.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="25.0.5.0.2+1-LTS"/>
     <property name="user.name" value="codespace"/>
@@ -37,6 +38,7 @@
     <property name="file.encoding" value="UTF-8"/>
     <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
     <property name="java.vendor.version" value="Microsoft-15804669"/>
+    <property name="maven.ext.class.path" value="/home/codespace/.vscode-remote/extensions/oracle.oracle-java-27.0.0/nbcode/java/maven-nblib/netbeans-eventspy.jar"/>
     <property name="localRepository" value="/home/codespace/.m2/repository"/>
     <property name="java.vendor.url.bug" value="https://github.com/microsoft/openjdk/issues"/>
     <property name="java.io.tmpdir" value="/tmp"/>
@@ -54,18 +56,5 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="69.0"/>
   </properties>
-  <testcase name="devePreservarZerosDoCodigo" classname="com.evento.ParticipanteTest" time="0.014"/>
-  <testcase name="deveRejeitarNomeVazio" classname="com.evento.ParticipanteTest" time="0.008"/>
-  <testcase name="deveRejeitarEmailVazio" classname="com.evento.ParticipanteTest" time="0.006"/>
-  <testcase name="deveCriarParticipanteComDadosValidos" classname="com.evento.ParticipanteTest" time="0.007"/>
-  <testcase name="deveRejeitarIdentificadorComApenasEspacos" classname="com.evento.ParticipanteTest" time="0.005"/>
-  <testcase name="deveRetornarCodigoInformado" classname="com.evento.ParticipanteTest" time="0.003"/>
-  <testcase name="deveRejeitarNomeNulo" classname="com.evento.ParticipanteTest" time="0.001"/>
-  <testcase name="deveRejeitarIdentificadorNulo" classname="com.evento.ParticipanteTest" time="0.003"/>
-  <testcase name="deveRetornarNomeInformado" classname="com.evento.ParticipanteTest" time="0.003"/>
-  <testcase name="deveRejeitarIdentificadorVazio" classname="com.evento.ParticipanteTest" time="0.002"/>
-  <testcase name="deveRejeitarEmailComApenasEspacos" classname="com.evento.ParticipanteTest" time="0.003"/>
-  <testcase name="deveRejeitarNomeComApenasEspacos" classname="com.evento.ParticipanteTest" time="0.001"/>
-  <testcase name="deveRejeitarEmailNulo" classname="com.evento.ParticipanteTest" time="0.001"/>
-  <testcase name="deveManterCodigosIndependentesEntreParticipantes" classname="com.evento.ParticipanteTest" time="0.001"/>
+  <testcase name="devePreservarNomeCompostoEAcentuado" classname="com.evento.ParticipanteTest" time="0.094"/>
 </testsuite>
