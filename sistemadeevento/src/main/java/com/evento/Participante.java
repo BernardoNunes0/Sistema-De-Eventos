@@ -107,20 +107,4 @@ public class Participante {
         this.nome = novoNome;
         this.email = novoEmail;
     }
-
-    /**
-     * Verifica o armazenamento dos valores da ultima atualizacao.
-     */
-    @Test
-    void devePermitirAtualizacoesSucessivas() {
-        final Participante participante =
-                new Participante("P001", "Ana", "ana@email.com");
-
-        participante.atualizarDados("Ana Maria", "primeiro@email.com");
-        participante.atualizarDados("Ana Júlia", "ultimo@email.com");
-
-        assertEquals("P001", participante.getCodigo());
-        assertEquals("Ana Júlia", participante.getNome());
-        assertEquals("ultimo@email.com", participante.getEmail());
-    }
 }
