@@ -178,7 +178,6 @@ class ParticipanteTest {
     void deveRetornarEmailInformado() {
         final Participante participante =
                 new Participante("P001", "Ana", "ana@email.com");
-
         assertEquals("ana@email.com", participante.getEmail());
     }
 }
