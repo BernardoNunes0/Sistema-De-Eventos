@@ -96,6 +96,9 @@ public final class Evento {
      * @param novoLocal novo local do evento
      */
     public void alterarDados(String novoNome, LocalDateTime novaData, String novoLocal) {
+        if (novaData == null) {
+            throw new IllegalArgumentException("A data do evento deve ser informada.");
+        }
         this.nome = novoNome;
         this.data = novaData;
         this.local = novoLocal;
