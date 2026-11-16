@@ -43,4 +43,13 @@ class IngressoTest {
 
         assertThrows(NullPointerException.class, () -> new Ingresso(null, evento, titular));
     }
+
+    @Test
+    void deveRejeitarCodigoEmBrancoAoCriarIngresso() {
+        final LocalDateTime data = LocalDateTime.of(2026, 12, 5, 20, 0);
+        final Evento evento = new Evento("E001", "Festival de Jazz", data, "Mineirão", BigDecimal.ZERO);
+        final Participante titular = new Participante("P001", "Ana", "ana@example.com");
+
+        assertThrows(IllegalArgumentException.class, () -> new Ingresso("   ", evento, titular));
+    }
 }
