@@ -15,6 +15,16 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 class CadastroDeEventosTest {
 
     @Test
+    void deveImpedirExclusaoDeEventoInexistente() {
+        CadastroDeEventos cadastro = new CadastroDeEventos();
+
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> cadastro.excluir("EVT-999")
+        );
+    }
+
+    @Test
     void deveExcluirEventoCadastrado() {
         CadastroDeEventos cadastro = new CadastroDeEventos();
         LocalDateTime data = LocalDateTime.of(2026, 12, 5, 20, 0);
