@@ -48,4 +48,17 @@ public class CadastroDeEventos {
 
         eventos.put(evento.getCodigo(), evento);
     }
+
+    /**
+     * Exclui um evento pelo código.
+     * @param codigo código do evento a excluir
+     */
+    public void excluir(String codigo) {
+        // Só exclui se o evento estiver cadastrado.
+        if (!eventos.containsKey(codigo)) {
+            throw new IllegalArgumentException("Evento não encontrado.");
+        }
+
+        eventos.remove(codigo);
+    }
 }
