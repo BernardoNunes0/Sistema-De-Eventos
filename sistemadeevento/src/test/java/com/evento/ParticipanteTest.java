@@ -98,4 +98,14 @@ class ParticipanteTest {
         assertThrows(IllegalArgumentException.class,
                 () -> new Participante("P001", "Ana", "   "));
     }
+
+    /**
+     * Verifica o retorno do codigo informado no construtor.
+     */
+    @Test
+    void deveRetornarCodigoInformado() {
+        final Participante participante =
+                new Participante("P123", "Ana", "ana@email.com");
+        assertEquals("P123", participante.getCodigo());
+    }
 }
