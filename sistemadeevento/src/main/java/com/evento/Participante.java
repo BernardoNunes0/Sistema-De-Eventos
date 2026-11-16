@@ -43,13 +43,4 @@ public class Participante {
 
         this.codigo = codigo;
     }
-
-    /**
-     * Retorna o codigo do participante.
-     *
-     * @return codigo do participante
-     */
-    public final String getCodigo() {
-        return this.codigo;
-    }
 }

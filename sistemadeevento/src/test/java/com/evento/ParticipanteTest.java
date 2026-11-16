@@ -120,4 +120,18 @@ class ParticipanteTest {
 
         assertEquals("P0001", participante.getCodigo());
     }
+
+    /**
+     * Verifica a independencia dos codigos entre participantes.
+     */
+    @Test
+    void deveManterCodigosIndependentesEntreParticipantes() {
+        final Participante primeiro =
+                new Participante("P001", "Ana", "ana@email.com");
+        final Participante segundo =
+                new Participante("P002", "Bruno", "bruno@email.com");
+
+        assertEquals("P001", primeiro.getCodigo());
+        assertEquals("P002", segundo.getCodigo());
+    }
 }
