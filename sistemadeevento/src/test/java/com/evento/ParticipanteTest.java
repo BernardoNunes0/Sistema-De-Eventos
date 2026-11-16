@@ -312,4 +312,17 @@ class ParticipanteTest {
         assertEquals("Ana", participante.getNome());
         assertEquals("ana@email.com", participante.getEmail());
     }
+
+    /**
+     * Verifica a preservacao do codigo apos atualizar os demais dados.
+     */
+    @Test
+    void devePreservarCodigoAposAtualizacao() {
+        final Participante participante =
+                new Participante("P001", "Ana", "ana@email.com");
+
+        participante.atualizarDados("Ana Maria", "novo@email.com");
+
+        assertEquals("P001", participante.getCodigo());
+    }
 }
