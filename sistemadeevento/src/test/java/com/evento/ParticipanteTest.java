@@ -3,6 +3,7 @@ package com.evento;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
@@ -97,5 +98,110 @@ class ParticipanteTest {
     void deveRejeitarEmailComApenasEspacos() {
         assertThrows(IllegalArgumentException.class,
                 () -> new Participante("P001", "Ana", "   "));
+    }
+
+    /**
+     * Verifica o retorno do codigo informado no construtor.
+     */
+    @Test
+    void deveRetornarCodigoInformado() {
+        final Participante participante =
+                new Participante("P123", "Ana", "ana@email.com");
+        assertEquals("P123", participante.getCodigo());
+    }
+
+    /**
+     * Verifica a preservacao dos zeros no codigo.
+     */
+    @Test
+    void devePreservarZerosDoCodigo() {
+        final Participante participante =
+                new Participante("P0001", "Ana", "ana@email.com");
+
+        assertEquals("P0001", participante.getCodigo());
+    }
+
+    /**
+     * Verifica a independencia dos codigos entre participantes.
+     */
+    @Test
+    void deveManterCodigosIndependentesEntreParticipantes() {
+        final Participante primeiro =
+                new Participante("P001", "Ana", "ana@email.com");
+        final Participante segundo =
+                new Participante("P002", "Bruno", "bruno@email.com");
+
+        assertEquals("P001", primeiro.getCodigo());
+        assertEquals("P002", segundo.getCodigo());
+    }
+
+    /**
+     * Verifica o retorno do nome informado no construtor.
+     */
+    @Test
+    void deveRetornarNomeInformado() {
+        final Participante participante =
+                new Participante("P001", "Ana", "ana@email.com");
+
+        assertEquals("Ana", participante.getNome());
+    }
+
+    /**
+     * Verifica a preservacao de nome composto e acentuado.
+     */
+    @Test
+    void devePreservarNomeCompostoEAcentuado() {
+        final Participante participante =
+                new Participante("P001", "Ana Júlia", "ana@email.com");
+
+        assertEquals("Ana Júlia", participante.getNome());
+    }
+
+    /**
+     * Verifica a independencia dos nomes entre participantes.
+     */
+    @Test
+    void deveManterNomesIndependentesEntreParticipantes() {
+        final Participante primeiro =
+                new Participante("P001", "Ana", "ana@email.com");
+        final Participante segundo =
+                new Participante("P002", "Bruno", "bruno@email.com");
+
+        assertEquals("Ana", primeiro.getNome());
+        assertEquals("Bruno", segundo.getNome());
+    }
+
+    /**
+     * Verifica o retorno do email informado no construtor.
+     */
+    @Test
+    void deveRetornarEmailInformado() {
+        final Participante participante =
+                new Participante("P001", "Ana", "ana@email.com");
+        assertEquals("ana@email.com", participante.getEmail());
+    }
+
+    /**
+     * Verifica a preservacao de email com ponto e subdominio.
+     */
+    @Test
+    void devePreservarEmailComPontoESubdominio() {
+        final Participante participante =
+                new Participante("P001", "Ana", "ana.silva@alunos.exemplo.com");
+
+        assertEquals("ana.silva@alunos.exemplo.com", participante.getEmail());
+    }
+
+    /**
+     * Verifica a independencia dos emails entre participantes.
+     */
+    @Test
+    void deveManterEmailsIndependentesEntreParticipantes() {
+        final Participante primeiro =
+                new Participante("P001", "Ana", "ana@email.com");
+        final Participante segundo =
+                new Participante("P002", "Bruno", "bruno@email.com");
+        assertEquals("ana@email.com", primeiro.getEmail());
+        assertEquals("bruno@email.com", segundo.getEmail());
     }
 }
