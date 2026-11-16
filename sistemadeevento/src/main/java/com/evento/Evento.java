@@ -54,10 +54,16 @@ public final class Evento {
     }
 
     /**
-     * Altera o preço do evento.
-     * @param novoPreco novo preço do evento
-     */
+    //  * Altera o preço do evento.
+    //  * @param novoPreco novo preço do evento
+    */
+    // public void alterarPreco(BigDecimal novoPreco) {
+    //     this.preco = novoPreco;
+    // }
     public void alterarPreco(BigDecimal novoPreco) {
+        if (novoPreco.signum() < 0) {
+            throw new IllegalArgumentException("O preço do evento deve ser zero ou positivo.");
+        }
         this.preco = novoPreco;
     }
 }
