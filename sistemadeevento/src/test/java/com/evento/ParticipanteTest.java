@@ -71,4 +71,13 @@ class ParticipanteTest {
         assertThrows(IllegalArgumentException.class,
                 () -> new Participante("P001", "Ana", ""));
     }
+
+    /**
+     * Verifica a rejeicao de identificador contendo apenas espacos.
+     */
+    @Test
+    void deveRejeitarIdentificadorComApenasEspacos() {
+        assertThrows(IllegalArgumentException.class,
+                () -> new Participante("   ", "Ana", "ana@email.com"));
+    }
 }

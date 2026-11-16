@@ -13,7 +13,7 @@ public class Participante {
      * @param codigo identificador do participante
      * @param nome nome do participante
      * @param email email do participante
-     * @throws IllegalArgumentException se o codigo ou o nome forem vazios
+     * @throws IllegalArgumentException se algum argumento for vazio
      * @throws NullPointerException se algum argumento for nulo
      */
     public Participante(final String codigo, final String nome, final String email) {
@@ -27,6 +27,10 @@ public class Participante {
 
         if (nome.isEmpty()) {
             throw new IllegalArgumentException("O nome nao pode ser vazio.");
+        }
+
+        if (email.isEmpty()) {
+            throw new IllegalArgumentException("O email nao pode ser vazio.");
         }
     }
 }
