@@ -142,4 +142,18 @@ class EventoTest {
         );
         assertEquals("Mineirão", evento.getLocal());
     }
+
+    @Test
+    void deveManterLocalDeCadaEvento() {
+        LocalDateTime data = LocalDateTime.parse("2026-12-05T20:00");
+        Evento primeiro = new Evento(
+            "musica-01", "Festival de Jazz", data, "Mineirão", BigDecimal.ZERO
+        );
+        Evento segundo = new Evento(
+            "musica-02", "Festival de Jazz", data, "Palácio das Artes", BigDecimal.ZERO
+        );
+
+        assertEquals("Mineirão", primeiro.getLocal());
+        assertEquals("Palácio das Artes", segundo.getLocal());
+    }
 }
