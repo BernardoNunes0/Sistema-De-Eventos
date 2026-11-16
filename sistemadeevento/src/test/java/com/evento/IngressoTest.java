@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /** Testes da classe Ingresso. */
 class IngressoTest {
@@ -32,5 +33,14 @@ class IngressoTest {
         final Ingresso ingresso = new Ingresso(codigo, evento, titular);
 
         assertEquals(codigo, ingresso.getCodigo());
+    }
+
+    @Test
+    void deveRejeitarCodigoNuloAoCriarIngresso() {
+        final LocalDateTime data = LocalDateTime.of(2026, 12, 5, 20, 0);
+        final Evento evento = new Evento("E001", "Festival de Jazz", data, "Mineirão", BigDecimal.ZERO);
+        final Participante titular = new Participante("P001", "Ana", "ana@example.com");
+
+        assertThrows(NullPointerException.class, () -> new Ingresso(null, evento, titular));
     }
 }
