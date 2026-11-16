@@ -53,4 +53,13 @@ class ParticipanteTest {
         assertThrows(IllegalArgumentException.class,
                 () -> new Participante("", "Ana", "ana@email.com"));
     }
+
+    /**
+     * Verifica a rejeicao de nome vazio.
+     */
+    @Test
+    void deveRejeitarNomeVazio() {
+        assertThrows(IllegalArgumentException.class,
+                () -> new Participante("P001", "", "ana@email.com"));
+    }
 }
