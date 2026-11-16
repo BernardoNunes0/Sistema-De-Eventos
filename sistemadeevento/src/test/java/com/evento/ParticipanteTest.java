@@ -180,4 +180,15 @@ class ParticipanteTest {
                 new Participante("P001", "Ana", "ana@email.com");
         assertEquals("ana@email.com", participante.getEmail());
     }
+
+    /**
+     * Verifica a preservacao de email com ponto e subdominio.
+     */
+    @Test
+    void devePreservarEmailComPontoESubdominio() {
+        final Participante participante =
+                new Participante("P001", "Ana", "ana.silva@alunos.exemplo.com");
+
+        assertEquals("ana.silva@alunos.exemplo.com", participante.getEmail());
+    }
 }
