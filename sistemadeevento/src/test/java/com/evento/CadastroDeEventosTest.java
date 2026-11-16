@@ -14,6 +14,24 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 class CadastroDeEventosTest {
 
     @Test
+    void deveAtualizarEventoCadastrado() {
+        CadastroDeEventos cadastro = new CadastroDeEventos();
+        LocalDateTime data = LocalDateTime.of(2026, 12, 5, 20, 0);
+
+        Evento original = new Evento(
+            "EVT-5", "Festival antigo", data, "Mineirão", BigDecimal.ZERO
+        );
+        Evento atualizado = new Evento(
+            "EVT-5", "Festival novo", data, "Mineirão", BigDecimal.ZERO
+        );
+
+        cadastro.cadastrar(original);
+        cadastro.atualizar(atualizado);
+
+        assertSame(atualizado, cadastro.buscarPorCodigo("EVT-5"));
+    }
+
+    @Test
     void deveListarEventosCadastrados() {
         CadastroDeEventos cadastro = new CadastroDeEventos();
         LocalDateTime data = LocalDateTime.of(2026, 12, 5, 20, 0);
