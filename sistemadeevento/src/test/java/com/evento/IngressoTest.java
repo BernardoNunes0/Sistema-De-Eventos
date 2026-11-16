@@ -52,4 +52,11 @@ class IngressoTest {
 
         assertThrows(IllegalArgumentException.class, () -> new Ingresso("   ", evento, titular));
     }
+
+    @Test
+    void deveRejeitarEventoNuloAoCriarIngresso() {
+        final Participante titular = new Participante("P001", "Ana", "ana@example.com");
+
+        assertThrows(NullPointerException.class, () -> new Ingresso("I001", null, titular));
+    }
 }
