@@ -229,4 +229,19 @@ class EventoTest {
         assertEquals("musica-01", evento.getCodigo());
         assertEquals(0, precoOriginal.compareTo(evento.getPreco()));
     }
+
+    @Test
+    void devePreservarDadosAoRecusarDataNula() {
+        LocalDateTime dataOriginal = LocalDateTime.parse("2026-12-05T20:00");
+        Evento evento = new Evento(
+            "musica-01", "Festival Neon Lights", dataOriginal, "Mineirão", BigDecimal.ZERO
+        );
+
+        assertThrows(IllegalArgumentException.class,
+            () -> evento.alterarDados("Festival de Jazz", null, "Palácio das Artes"));
+
+        assertEquals("Festival Neon Lights", evento.getNome());
+        assertEquals(dataOriginal, evento.getData());
+        assertEquals("Mineirão", evento.getLocal());
+    }
 }
