@@ -15,10 +15,18 @@ public final class Ingresso {
      * @param codigo  código informado para o ingresso
      * @param evento  evento vinculado ao ingresso
      * @param titular participante titular do ingresso
-     * @throws NullPointerException se o código do ingresso for nulo
+     * @throws IllegalArgumentException se o código for vazio ou contiver apenas
+     *                                  espaços
+     * @throws NullPointerException     se o código do ingresso for nulo
      */
     public Ingresso(String codigo, Evento evento, Participante titular) {
-        this.codigo = Objects.requireNonNull(codigo, "O código do ingresso não pode ser nulo.");
+        Objects.requireNonNull(codigo, "O código do ingresso não pode ser nulo.");
+        if (codigo.trim().isEmpty()) {
+            throw new IllegalArgumentException(
+                    "O código do ingresso não pode ser vazio ou conter apenas espaços.");
+        }
+
+        this.codigo = codigo;
         this.evento = evento;
         this.titular = titular;
     }
