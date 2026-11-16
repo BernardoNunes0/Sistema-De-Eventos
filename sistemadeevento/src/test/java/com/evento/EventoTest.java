@@ -183,4 +183,20 @@ class EventoTest {
         );
         assertEquals(meiaNoite, evento.getData());
     }
+
+    @Test
+    void deveManterHorarioDeCadaEventoNoMesmoDia() {
+        LocalDateTime inicio = LocalDateTime.parse("2027-01-10T18:00");
+        LocalDateTime encerramento = LocalDateTime.parse("2027-01-10T21:00");
+
+        Evento abertura = new Evento(
+            "musica-01", "Show de abertura", inicio, "Mineirão", BigDecimal.ZERO
+        );
+        Evento festival = new Evento(
+            "musica-02", "Show de encerramento", encerramento, "Mineirão", BigDecimal.ZERO
+        );
+
+        assertEquals(inicio, abertura.getData());
+        assertEquals(encerramento, festival.getData());
+    }
 }
