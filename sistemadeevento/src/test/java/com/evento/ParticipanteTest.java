@@ -134,4 +134,15 @@ class ParticipanteTest {
         assertEquals("P001", primeiro.getCodigo());
         assertEquals("P002", segundo.getCodigo());
     }
+
+    /**
+     * Verifica o retorno do nome informado no construtor.
+     */
+    @Test
+    void deveRetornarNomeInformado() {
+        final Participante participante =
+                new Participante("P001", "Ana", "ana@email.com");
+
+        assertEquals("Ana", participante.getNome());
+    }
 }
