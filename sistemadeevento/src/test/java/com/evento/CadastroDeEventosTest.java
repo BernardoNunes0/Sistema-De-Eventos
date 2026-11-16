@@ -182,4 +182,22 @@ class CadastroDeEventosTest {
 
         assertNull(cadastro.buscarPorCodigo("EVT-999"));
     }
+
+    @Test
+    void deveBuscarEventoCorretoEntreVariosCadastrados() {
+        CadastroDeEventos cadastro = new CadastroDeEventos();
+        LocalDateTime data = LocalDateTime.of(2026, 12, 5, 20, 0);
+
+        Evento primeiro = new Evento(
+            "EVT-10", "Festival A", data, "Mineirão", BigDecimal.ZERO
+        );
+        Evento segundo = new Evento(
+            "EVT-11", "Festival B", data, "Mineirão", BigDecimal.ZERO
+        );
+
+        cadastro.cadastrar(primeiro);
+        cadastro.cadastrar(segundo);
+
+        assertSame(segundo, cadastro.buscarPorCodigo("EVT-11"));
+    }
 }
