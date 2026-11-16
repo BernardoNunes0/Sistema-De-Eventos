@@ -36,4 +36,12 @@ class ParticipanteTest {
                 () -> new Participante("P001", null, "ana@email.com"));
     }
 
+    /**
+     * Verifica a rejeicao de email nulo.
+     */
+    @Test
+    void deveRejeitarEmailNulo() {
+        assertThrows(NullPointerException.class,
+                () -> new Participante("P001", "Ana", null));
+    }
 }
