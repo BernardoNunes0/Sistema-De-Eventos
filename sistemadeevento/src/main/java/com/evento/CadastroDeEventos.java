@@ -3,7 +3,9 @@ package com.evento;
 import java.util.HashMap;
 import java.util.Map;
 
+/** Gerencia o cadastro e a busca de eventos pelo código. */
 public class CadastroDeEventos {
+    // Relaciona o código de cada evento ao objeto correspondente.
     private final Map<String, Evento> eventos = new HashMap<>();
 
     public void cadastrar(Evento evento) {
@@ -16,6 +18,11 @@ public class CadastroDeEventos {
         eventos.put(evento.getCodigo(), evento);
     }
 
+    /**
+     * Busca um evento pelo código.
+     * @param codigo código usado na busca
+     * @return evento encontrado ou null se o código não estiver cadastrado
+     */
     public Evento buscarPorCodigo(String codigo) {
         return eventos.get(codigo);
     }
