@@ -44,4 +44,58 @@ class ParticipanteTest {
         assertThrows(NullPointerException.class,
                 () -> new Participante("P001", "Ana", null));
     }
+
+    /**
+     * Verifica a rejeicao de identificador vazio.
+     */
+    @Test
+    void deveRejeitarIdentificadorVazio() {
+        assertThrows(IllegalArgumentException.class,
+                () -> new Participante("", "Ana", "ana@email.com"));
+    }
+
+    /**
+     * Verifica a rejeicao de nome vazio.
+     */
+    @Test
+    void deveRejeitarNomeVazio() {
+        assertThrows(IllegalArgumentException.class,
+                () -> new Participante("P001", "", "ana@email.com"));
+    }
+
+    /**
+     * Verifica a rejeicao de email vazio.
+     */
+    @Test
+    void deveRejeitarEmailVazio() {
+        assertThrows(IllegalArgumentException.class,
+                () -> new Participante("P001", "Ana", ""));
+    }
+
+    /**
+     * Verifica a rejeicao de identificador contendo apenas espacos.
+     */
+    @Test
+    void deveRejeitarIdentificadorComApenasEspacos() {
+        assertThrows(IllegalArgumentException.class,
+                () -> new Participante("   ", "Ana", "ana@email.com"));
+    }
+
+    /**
+     * Verifica a rejeicao de nome contendo apenas espacos.
+     */
+    @Test
+    void deveRejeitarNomeComApenasEspacos() {
+        assertThrows(IllegalArgumentException.class,
+                () -> new Participante("P001", "   ", "ana@email.com"));
+    }
+
+    /**
+     * Verifica a rejeicao de email contendo apenas espacos.
+     */
+    @Test
+    void deveRejeitarEmailComApenasEspacos() {
+        assertThrows(IllegalArgumentException.class,
+                () -> new Participante("P001", "Ana", "   "));
+    }
 }
