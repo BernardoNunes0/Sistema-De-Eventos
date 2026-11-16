@@ -1,18 +1,19 @@
 package com.evento;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import java.util.List;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertNull;
-
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/** Testes do cadastro de eventos. */
 class CadastroDeEventosTest {
+    private static final LocalDateTime DATA_EVENTO = LocalDateTime.of(2026, 12, 5, 20, 0);
 
     @Test
     void deveImpedirExclusaoDeEventoInexistente() {
@@ -27,7 +28,7 @@ class CadastroDeEventosTest {
     @Test
     void deveExcluirEventoCadastrado() {
         CadastroDeEventos cadastro = new CadastroDeEventos();
-        LocalDateTime data = LocalDateTime.of(2026, 12, 5, 20, 0);
+        LocalDateTime data = DATA_EVENTO;
 
         Evento evento = new Evento(
             "EVT-6", "Festival", data, "Mineirão", BigDecimal.ZERO
@@ -42,7 +43,7 @@ class CadastroDeEventosTest {
     @Test
     void deveAtualizarEventoCadastrado() {
         CadastroDeEventos cadastro = new CadastroDeEventos();
-        LocalDateTime data = LocalDateTime.of(2026, 12, 5, 20, 0);
+        LocalDateTime data = DATA_EVENTO;
 
         Evento original = new Evento(
             "EVT-5", "Festival antigo", data, "Mineirão", BigDecimal.ZERO
@@ -60,7 +61,7 @@ class CadastroDeEventosTest {
     @Test
     void deveListarEventosCadastrados() {
         CadastroDeEventos cadastro = new CadastroDeEventos();
-        LocalDateTime data = LocalDateTime.of(2026, 12, 5, 20, 0);
+        LocalDateTime data = DATA_EVENTO;
 
         Evento primeiro = new Evento(
             "EVT-3", "Festival A", data, "Mineirão", BigDecimal.ZERO
@@ -82,7 +83,7 @@ class CadastroDeEventosTest {
     @Test
     void deveImpedirCadastroDeEventosComCodigoDuplicado() {
         CadastroDeEventos cadastro = new CadastroDeEventos();
-        LocalDateTime data = LocalDateTime.of(2026, 12, 5, 20, 0);
+        LocalDateTime data = DATA_EVENTO;
 
         Evento primeiro = new Evento(
             "EVT-2", "Festival", data, "Mineirão", new BigDecimal("120.00")
@@ -107,7 +108,7 @@ class CadastroDeEventosTest {
         Evento evento = new Evento(
             "EVT-1",
             "Festival",
-            LocalDateTime.of(2026, 12, 5, 20, 0),
+            DATA_EVENTO,
             "Mineirão",
             new BigDecimal("120.00")
         );
@@ -120,7 +121,7 @@ class CadastroDeEventosTest {
     @Test
     void deveManterOutrosEventosAoExcluirUmEvento() {
         CadastroDeEventos cadastro = new CadastroDeEventos();
-        LocalDateTime data = LocalDateTime.of(2026, 12, 5, 20, 0);
+        LocalDateTime data = DATA_EVENTO;
 
         Evento removido = new Evento(
             "EVT-7", "Festival A", data, "Mineirão", BigDecimal.ZERO
@@ -140,7 +141,7 @@ class CadastroDeEventosTest {
     @Test
     void deveImpedirAtualizacaoDeEventoInexistente() {
         CadastroDeEventos cadastro = new CadastroDeEventos();
-        LocalDateTime data = LocalDateTime.of(2026, 12, 5, 20, 0);
+        LocalDateTime data = DATA_EVENTO;
 
         Evento evento = new Evento(
             "EVT-999", "Festival", data, "Mineirão", BigDecimal.ZERO
@@ -155,7 +156,7 @@ class CadastroDeEventosTest {
     @Test
     void deveAtualizarApenasEventoComMesmoCodigo() {
         CadastroDeEventos cadastro = new CadastroDeEventos();
-        LocalDateTime data = LocalDateTime.of(2026, 12, 5, 20, 0);
+        LocalDateTime data = DATA_EVENTO;
 
         Evento original = new Evento(
             "EVT-5", "Festival antigo", data, "Mineirão", BigDecimal.ZERO
@@ -186,7 +187,7 @@ class CadastroDeEventosTest {
     @Test
     void deveBuscarEventoCorretoEntreVariosCadastrados() {
         CadastroDeEventos cadastro = new CadastroDeEventos();
-        LocalDateTime data = LocalDateTime.of(2026, 12, 5, 20, 0);
+        LocalDateTime data = DATA_EVENTO;
 
         Evento primeiro = new Evento(
             "EVT-10", "Festival A", data, "Mineirão", BigDecimal.ZERO
@@ -211,7 +212,7 @@ class CadastroDeEventosTest {
     @Test
     void deveRetornarCopiaDaListaSemAlterarCadastro() {
         CadastroDeEventos cadastro = new CadastroDeEventos();
-        LocalDateTime data = LocalDateTime.of(2026, 12, 5, 20, 0);
+        LocalDateTime data = DATA_EVENTO;
 
         Evento evento = new Evento(
             "EVT-12", "Festival", data, "Mineirão", BigDecimal.ZERO
@@ -229,7 +230,7 @@ class CadastroDeEventosTest {
     @Test
     void deveCadastrarEventosComMesmoNomeECodigosDiferentes() {
         CadastroDeEventos cadastro = new CadastroDeEventos();
-        LocalDateTime data = LocalDateTime.of(2026, 12, 5, 20, 0);
+        LocalDateTime data = DATA_EVENTO;
 
         Evento primeiro = new Evento(
             "EVT-13", "Festival", data, "Mineirão", BigDecimal.ZERO

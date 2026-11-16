@@ -1,15 +1,19 @@
 package com.evento;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /** Gerencia o cadastro e a busca de eventos pelo código. */
 public class CadastroDeEventos {
     // Relaciona o código de cada evento ao objeto correspondente.
     private final Map<String, Evento> eventos = new HashMap<>();
 
+    /**
+     * Cadastra um evento usando seu código como identificador.
+     * @param evento evento a ser cadastrado
+     */
     public void cadastrar(Evento evento) {
         // Impede que o novo evento substitua outro com o mesmo código.
         if (eventos.containsKey(evento.getCodigo())) {
@@ -28,6 +32,7 @@ public class CadastroDeEventos {
     public Evento buscarPorCodigo(String codigo) {
         return eventos.get(codigo);
     }
+
     /**
      * Retorna uma lista com os eventos cadastrados.
      * @return cópia dos eventos armazenados
