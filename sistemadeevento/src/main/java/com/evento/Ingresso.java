@@ -82,8 +82,16 @@ public final class Ingresso {
         /** Cancela o ingresso. */
     }
 
+    /**
+     * Cancela o ingresso.
+     *
+     * @throws IllegalStateException se a situação atual impedir o cancelamento
+     */
     public void cancelar() {
-        situacao = SituacaoIngresso.CANCELADO;
+        if (situacao != SituacaoIngresso.EMITIDO) {
+            throw new IllegalStateException("Somente ingressos emitidos podem ser cancelados.");
+        }
 
+        situacao = SituacaoIngresso.CANCELADO;
     }
 }
