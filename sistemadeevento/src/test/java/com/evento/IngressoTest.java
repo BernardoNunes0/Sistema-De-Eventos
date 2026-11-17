@@ -227,4 +227,17 @@ class IngressoTest {
         assertEquals("I001", primeiro.getCodigo());
         assertEquals("I002", segundo.getCodigo());
     }
+
+    @Test
+    void deveManterEventosIndependentesEntreIngressos() {
+        final LocalDateTime data = LocalDateTime.of(2026, 12, 5, 20, 0);
+        final Evento primeiroEvento = new Evento("E001", "Festival de Jazz", data, "Mineirão", BigDecimal.ZERO);
+        final Evento segundoEvento = new Evento("E002", "Mostra de Cinema", data, "Cine Brasil", BigDecimal.ZERO);
+        final Participante titular = new Participante("P001", "Ana", "ana@example.com");
+        final Ingresso primeiroIngresso = new Ingresso("I001", primeiroEvento, titular);
+        final Ingresso segundoIngresso = new Ingresso("I002", segundoEvento, titular);
+
+        assertSame(primeiroEvento, primeiroIngresso.getEvento());
+        assertSame(segundoEvento, segundoIngresso.getEvento());
+    }
 }
