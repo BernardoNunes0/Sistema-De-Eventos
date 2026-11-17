@@ -253,4 +253,17 @@ class IngressoTest {
 
         assertSame(evento, ingresso.getEvento());
     }
+
+    @Test
+    void deveRetornarOTitularDeCadaIngresso() {
+        final LocalDateTime data = LocalDateTime.of(2026, 12, 5, 20, 0);
+        final Evento evento = new Evento("E001", "Festival de Jazz", data, "Mineirão", BigDecimal.ZERO);
+        final Participante primeiroTitular = new Participante("P001", "Ana", "ana@example.com");
+        final Participante segundoTitular = new Participante("P002", "Bruno", "bruno@example.com");
+        final Ingresso primeiroIngresso = new Ingresso("I001", evento, primeiroTitular);
+        final Ingresso segundoIngresso = new Ingresso("I002", evento, segundoTitular);
+
+        assertSame(primeiroTitular, primeiroIngresso.getTitular());
+        assertSame(segundoTitular, segundoIngresso.getTitular());
+    }
 }
