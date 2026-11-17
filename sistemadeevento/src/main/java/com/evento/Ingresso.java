@@ -99,8 +99,9 @@ public final class Ingresso {
      * Altera o titular do ingresso.
      *
      * @param novoTitular participante que assume a titularidade
+     * @throws NullPointerException se o novo titular for nulo
      */
     public void alterarTitular(Participante novoTitular) {
-        this.titular = novoTitular;
+        this.titular = Objects.requireNonNull(novoTitular, "O novo titular não pode ser nulo.");
     }
 }
