@@ -67,4 +67,15 @@ class IngressoTest {
 
         assertThrows(NullPointerException.class, () -> new Ingresso("I001", evento, null));
     }
+
+    @Test
+    void deveIniciarComoEmitido() {
+        final LocalDateTime data = LocalDateTime.of(2026, 12, 5, 20, 0);
+        final Evento evento = new Evento("E001", "Festival de Jazz", data, "Mineirão", BigDecimal.ZERO);
+        final Participante titular = new Participante("P001", "Ana", "ana@example.com");
+
+        final Ingresso ingresso = new Ingresso("I001", evento, titular);
+
+        assertEquals(SituacaoIngresso.EMITIDO, ingresso.getSituacao());
+    }
 }
