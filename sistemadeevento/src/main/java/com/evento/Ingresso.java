@@ -68,8 +68,16 @@ public final class Ingresso {
         return situacao;
     }
 
-    /** Marca o ingresso como utilizado. */
+    /**
+     * Marca o ingresso como utilizado.
+     *
+     * @throws IllegalStateException se a situação atual impedir o uso
+     */
     public void marcarComoUtilizado() {
+        if (situacao != SituacaoIngresso.EMITIDO) {
+            throw new IllegalStateException("Somente ingressos emitidos podem ser utilizados.");
+        }
+
         situacao = SituacaoIngresso.UTILIZADO;
     }
 }
