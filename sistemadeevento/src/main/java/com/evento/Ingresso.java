@@ -67,4 +67,9 @@ public final class Ingresso {
     public SituacaoIngresso getSituacao() {
         return situacao;
     }
+
+    /** Marca o ingresso como utilizado. */
+    public void marcarComoUtilizado() {
+        situacao = SituacaoIngresso.UTILIZADO;
+    }
 }

@@ -4,5 +4,7 @@ package com.evento;
 public enum SituacaoIngresso {
 
     /** Ingresso emitido. */
-    EMITIDO
+    EMITIDO,
+    /** Ingresso utilizado. */
+    UTILIZADO
 }
