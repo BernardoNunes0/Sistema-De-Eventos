@@ -59,4 +59,12 @@ class IngressoTest {
 
         assertThrows(NullPointerException.class, () -> new Ingresso("I001", null, titular));
     }
+
+    @Test
+    void deveRejeitarTitularNuloAoCriarIngresso() {
+        final LocalDateTime data = LocalDateTime.of(2026, 12, 5, 20, 0);
+        final Evento evento = new Evento("E001", "Festival de Jazz", data, "Mineirão", BigDecimal.ZERO);
+
+        assertThrows(NullPointerException.class, () -> new Ingresso("I001", evento, null));
+    }
 }
