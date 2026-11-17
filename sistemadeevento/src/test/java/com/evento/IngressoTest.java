@@ -191,4 +191,19 @@ class IngressoTest {
         assertThrows(IllegalStateException.class, () -> ingresso.alterarTitular(novoTitular));
         assertSame(titularOriginal, ingresso.getTitular());
     }
+
+    @Test
+    void deveRejeitarTrocaDeTitularDeIngressoCancelado() {
+        final LocalDateTime data = LocalDateTime.of(2026, 12, 5, 20, 0);
+        final Evento evento = new Evento("E001", "Festival de Jazz", data, "Mineirão", BigDecimal.ZERO);
+        final Participante titularOriginal = new Participante("P001", "Ana", "ana@example.com");
+        final Participante novoTitular = new Participante("P002", "Bruno", "bruno@example.com");
+        final Ingresso ingresso = new Ingresso("I001", evento, titularOriginal);
+
+        ingresso.cancelar();
+
+        assertThrows(IllegalStateException.class, () -> ingresso.alterarTitular(novoTitular));
+        assertSame(titularOriginal, ingresso.getTitular());
+    }
+
 }
