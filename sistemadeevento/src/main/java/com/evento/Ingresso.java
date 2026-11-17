@@ -8,6 +8,7 @@ public final class Ingresso {
     private final String codigo;
     private final Evento evento;
     private final Participante titular;
+    private SituacaoIngresso situacao = SituacaoIngresso.EMITIDO;
 
     /**
      * Cria um ingresso para o evento e o titular informados.
@@ -17,7 +18,7 @@ public final class Ingresso {
      * @param titular participante titular do ingresso
      * @throws IllegalArgumentException se o código for vazio ou contiver apenas
      *                                  espaços
-     * @throws NullPointerException se o código, o evento ou o titular for nulo
+     * @throws NullPointerException     se o código, o evento ou o titular for nulo
      */
     public Ingresso(String codigo, Evento evento, Participante titular) {
         Objects.requireNonNull(codigo, "O código do ingresso não pode ser nulo.");
@@ -56,5 +57,14 @@ public final class Ingresso {
      */
     public Participante getTitular() {
         return titular;
+    }
+
+    /**
+     * Retorna a situação atual do ingresso.
+     *
+     * @return situação atual do ingresso
+     */
+    public SituacaoIngresso getSituacao() {
+        return situacao;
     }
 }
