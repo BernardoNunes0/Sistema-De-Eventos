@@ -99,9 +99,15 @@ public final class Ingresso {
      * Altera o titular do ingresso.
      *
      * @param novoTitular participante que assume a titularidade
-     * @throws NullPointerException se o novo titular for nulo
+     * @throws IllegalStateException se a situação atual impedir a troca de titular
+     * @throws NullPointerException  se o novo titular for nulo
      */
     public void alterarTitular(Participante novoTitular) {
+        if (situacao != SituacaoIngresso.EMITIDO) {
+            throw new IllegalStateException(
+                    "Somente ingressos emitidos podem ter o titular alterado.");
+        }
+
         this.titular = Objects.requireNonNull(novoTitular, "O novo titular não pode ser nulo.");
     }
 }
