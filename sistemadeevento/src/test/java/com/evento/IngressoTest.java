@@ -320,4 +320,18 @@ class IngressoTest {
 
         assertEquals(SituacaoIngresso.EMITIDO, ingresso.getSituacao());
     }
+
+    @Test
+    void deveIniciarComoEmitidoAposCancelarOutroIngresso() {
+        final LocalDateTime data = LocalDateTime.of(2026, 12, 5, 20, 0);
+        final Evento evento = new Evento("E001", "Festival de Jazz", data, "Mineirão", BigDecimal.ZERO);
+        final Participante titular = new Participante("P001", "Ana", "ana@example.com");
+        final Ingresso primeiro = new Ingresso("I001", evento, titular);
+
+        primeiro.cancelar();
+        final Ingresso segundo = new Ingresso("I002", evento, titular);
+
+        assertEquals(SituacaoIngresso.CANCELADO, primeiro.getSituacao());
+        assertEquals(SituacaoIngresso.EMITIDO, segundo.getSituacao());
+    }
 }
