@@ -74,12 +74,8 @@ public final class Ingresso {
      * @throws IllegalStateException se a situação atual impedir o uso
      */
     public void marcarComoUtilizado() {
-        if (situacao != SituacaoIngresso.EMITIDO) {
-            throw new IllegalStateException("Somente ingressos emitidos podem ser utilizados.");
-        }
-
+        exigirIngressoEmitido("Somente ingressos emitidos podem ser utilizados.");
         situacao = SituacaoIngresso.UTILIZADO;
-        /** Cancela o ingresso. */
     }
 
     /**
@@ -88,10 +84,7 @@ public final class Ingresso {
      * @throws IllegalStateException se a situação atual impedir o cancelamento
      */
     public void cancelar() {
-        if (situacao != SituacaoIngresso.EMITIDO) {
-            throw new IllegalStateException("Somente ingressos emitidos podem ser cancelados.");
-        }
-
+        exigirIngressoEmitido("Somente ingressos emitidos podem ser cancelados.");
         situacao = SituacaoIngresso.CANCELADO;
     }
 
@@ -103,11 +96,20 @@ public final class Ingresso {
      * @throws NullPointerException  se o novo titular for nulo
      */
     public void alterarTitular(Participante novoTitular) {
-        if (situacao != SituacaoIngresso.EMITIDO) {
-            throw new IllegalStateException(
-                    "Somente ingressos emitidos podem ter o titular alterado.");
-        }
-
+        exigirIngressoEmitido("Somente ingressos emitidos podem ter o titular alterado.");
         this.titular = Objects.requireNonNull(novoTitular, "O novo titular não pode ser nulo.");
+    }
+
+    /**
+     * Exige que o ingresso esteja emitido antes da operação.
+     *
+     * @param mensagem mensagem de erro da operação
+     * @throws IllegalStateException se a situação do ingresso for diferente de
+     *                               EMITIDO
+     */
+    private void exigirIngressoEmitido(String mensagem) {
+        if (situacao != SituacaoIngresso.EMITIDO) {
+            throw new IllegalStateException(mensagem);
+        }
     }
 }
