@@ -7,7 +7,7 @@ public final class Ingresso {
 
     private final String codigo;
     private final Evento evento;
-    private final Participante titular;
+    private Participante titular;
     private SituacaoIngresso situacao = SituacaoIngresso.EMITIDO;
 
     /**
@@ -93,5 +93,14 @@ public final class Ingresso {
         }
 
         situacao = SituacaoIngresso.CANCELADO;
+    }
+
+    /**
+     * Altera o titular do ingresso.
+     *
+     * @param novoTitular participante que assume a titularidade
+     */
+    public void alterarTitular(Participante novoTitular) {
+        this.titular = novoTitular;
     }
 }
