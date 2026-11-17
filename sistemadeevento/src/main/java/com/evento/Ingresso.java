@@ -79,5 +79,11 @@ public final class Ingresso {
         }
 
         situacao = SituacaoIngresso.UTILIZADO;
+        /** Cancela o ingresso. */
+    }
+
+    public void cancelar() {
+        situacao = SituacaoIngresso.CANCELADO;
+
     }
 }

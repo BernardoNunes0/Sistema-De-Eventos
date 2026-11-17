@@ -6,5 +6,7 @@ public enum SituacaoIngresso {
     /** Ingresso emitido. */
     EMITIDO,
     /** Ingresso utilizado. */
-    UTILIZADO
+    UTILIZADO,
+    /** Ingresso cancelado. */
+    CANCELADO
 }
