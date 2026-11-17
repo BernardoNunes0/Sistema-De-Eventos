@@ -293,4 +293,18 @@ class IngressoTest {
         assertSame(novoTitular, primeiro.getTitular());
         assertSame(titularOriginal, segundo.getTitular());
     }
+
+    @Test
+    void deveManterSituacoesIndependentesAoUtilizarUmIngresso() {
+        final LocalDateTime data = LocalDateTime.of(2026, 12, 5, 20, 0);
+        final Evento evento = new Evento("E001", "Festival de Jazz", data, "Mineirão", BigDecimal.ZERO);
+        final Participante titular = new Participante("P001", "Ana", "ana@example.com");
+        final Ingresso primeiro = new Ingresso("I001", evento, titular);
+        final Ingresso segundo = new Ingresso("I002", evento, titular);
+
+        primeiro.marcarComoUtilizado();
+
+        assertEquals(SituacaoIngresso.UTILIZADO, primeiro.getSituacao());
+        assertEquals(SituacaoIngresso.EMITIDO, segundo.getSituacao());
+    }
 }
