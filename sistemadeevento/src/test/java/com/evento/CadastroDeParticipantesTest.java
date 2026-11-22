@@ -11,11 +11,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /** Testes do cadastro de participantes. */
 class CadastroDeParticipantesTest {
+    private final CadastroDeParticipantes cadastro = new CadastroDeParticipantes();
 
     /** Verifica que a busca devolve o participante cadastrado. */
     @Test
     void deveBuscarParticipanteCadastradoPeloCodigo() {
-        final CadastroDeParticipantes cadastro = new CadastroDeParticipantes();
         final Participante ana = new Participante("001", "Ana", "ana@example.com");
 
         cadastro.cadastrar(ana);
@@ -26,7 +26,6 @@ class CadastroDeParticipantesTest {
     /** Verifica que um código duplicado preserva o cadastro original. */
     @Test
     void deveImpedirCadastroDeCodigoDuplicado() {
-        final CadastroDeParticipantes cadastro = new CadastroDeParticipantes();
         final Participante ana = new Participante("001", "Ana", "ana@example.com");
         final Participante bruno = new Participante("001", "Bruno", "bruno@example.com");
 
@@ -39,7 +38,6 @@ class CadastroDeParticipantesTest {
     /** Verifica que o cadastro recusa um participante nulo. */
     @Test
     void deveRecusarParticipanteNulo() {
-        final CadastroDeParticipantes cadastro = new CadastroDeParticipantes();
 
         assertThrows(IllegalArgumentException.class, () -> cadastro.cadastrar(null));
     }
@@ -47,7 +45,6 @@ class CadastroDeParticipantesTest {
     /** Verifica o cadastro de participantes com códigos diferentes. */
     @Test
     void deveCadastrarParticipantesComCodigosDiferentes() {
-        final CadastroDeParticipantes cadastro = new CadastroDeParticipantes();
         final Participante ana = new Participante("001", "Ana", "ana@example.com");
         final Participante bruno = new Participante("002", "Bruno", "bruno@example.com");
 
@@ -60,14 +57,12 @@ class CadastroDeParticipantesTest {
 
     @Test
     void deveRetornarNuloAoBuscarEmCadastroVazio() {
-        final CadastroDeParticipantes cadastro = new CadastroDeParticipantes();
 
         assertNull(cadastro.buscarPorCodigo("001"));
     }
 
     @Test
     void deveRetornarNuloParaCodigoNaoCadastrado() {
-        final CadastroDeParticipantes cadastro = new CadastroDeParticipantes();
         cadastro.cadastrar(new Participante("001", "Ana", "ana@example.com"));
 
         assertNull(cadastro.buscarPorCodigo("002"));
@@ -75,14 +70,12 @@ class CadastroDeParticipantesTest {
 
     @Test
     void deveListarCadastroVazio() {
-        final CadastroDeParticipantes cadastro = new CadastroDeParticipantes();
 
         assertTrue(cadastro.listar().isEmpty());
     }
 
     @Test
     void deveListarTodosOsParticipantes() {
-        final CadastroDeParticipantes cadastro = new CadastroDeParticipantes();
         final Participante ana = new Participante("001", "Ana", "ana@example.com");
         final Participante bruno = new Participante("002", "Bruno", "bruno@example.com");
 
@@ -98,7 +91,6 @@ class CadastroDeParticipantesTest {
 
     @Test
     void devePreservarCadastroAoLimparListaRetornada() {
-        final CadastroDeParticipantes cadastro = new CadastroDeParticipantes();
         final Participante ana = new Participante("001", "Ana", "ana@example.com");
         cadastro.cadastrar(ana);
 
@@ -110,7 +102,6 @@ class CadastroDeParticipantesTest {
 
     @Test
     void deveAtualizarNomeEEmailDoParticipante() {
-        final CadastroDeParticipantes cadastro = new CadastroDeParticipantes();
         final Participante ana = new Participante("001", "Ana", "ana@example.com");
         cadastro.cadastrar(ana);
 
@@ -123,7 +114,6 @@ class CadastroDeParticipantesTest {
 
     @Test
     void deveAceitarNomeComUmCaractereAoAtualizar() {
-        final CadastroDeParticipantes cadastro = new CadastroDeParticipantes();
         final Participante ana = new Participante("001", "Ana", "ana@example.com");
         cadastro.cadastrar(ana);
 
@@ -134,7 +124,6 @@ class CadastroDeParticipantesTest {
 
     @Test
     void deveRecusarAtualizacaoDeCodigoNaoCadastrado() {
-        final CadastroDeParticipantes cadastro = new CadastroDeParticipantes();
 
         assertThrows(IllegalArgumentException.class,
                 () -> cadastro.atualizar("999", "Ana", "ana@example.com"));
@@ -144,7 +133,6 @@ class CadastroDeParticipantesTest {
 
     @Test
     void devePreservarDadosAoRecusarEmailInvalido() {
-        final CadastroDeParticipantes cadastro = new CadastroDeParticipantes();
         final Participante ana = new Participante("001", "Ana", "ana@example.com");
         cadastro.cadastrar(ana);
 
@@ -157,7 +145,6 @@ class CadastroDeParticipantesTest {
 
     @Test
     void deveExcluirParticipanteCadastrado() {
-        final CadastroDeParticipantes cadastro = new CadastroDeParticipantes();
         final Participante ana = new Participante("001", "Ana", "ana@example.com");
         cadastro.cadastrar(ana);
 
@@ -169,7 +156,6 @@ class CadastroDeParticipantesTest {
 
     @Test
     void devePreservarOutrosParticipantesAoExcluir() {
-        final CadastroDeParticipantes cadastro = new CadastroDeParticipantes();
         final Participante ana = new Participante("001", "Ana", "ana@example.com");
         final Participante bruno = new Participante("002", "Bruno", "bruno@example.com");
         cadastro.cadastrar(ana);
@@ -184,7 +170,6 @@ class CadastroDeParticipantesTest {
 
     @Test
     void deveRecusarExclusaoDeCodigoNaoCadastrado() {
-        final CadastroDeParticipantes cadastro = new CadastroDeParticipantes();
         final Participante ana = new Participante("001", "Ana", "ana@example.com");
         cadastro.cadastrar(ana);
 
