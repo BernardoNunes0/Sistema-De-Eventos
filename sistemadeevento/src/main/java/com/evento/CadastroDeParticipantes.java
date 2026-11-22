@@ -70,7 +70,9 @@ public final class CadastroDeParticipantes {
      * @param codigo código do participante
      */
     public void excluir(final String codigo) {
-        participantes.remove(codigo);
+        if (participantes.remove(codigo) == null) {
+            throw new IllegalArgumentException("Participante não encontrado.");
+        }
     }
 
 }
