@@ -142,4 +142,17 @@ class CadastroDeParticipantesTest {
         assertTrue(cadastro.listar().isEmpty());
     }
 
+    @Test
+    void devePreservarDadosAoRecusarEmailInvalido() {
+        final CadastroDeParticipantes cadastro = new CadastroDeParticipantes();
+        final Participante ana = new Participante("001", "Ana", "ana@example.com");
+        cadastro.cadastrar(ana);
+
+        assertThrows(IllegalArgumentException.class,
+                () -> cadastro.atualizar("001", "Ana Silva", "emailinvalido"));
+
+        assertEquals("Ana", ana.getNome());
+        assertEquals("ana@example.com", ana.getEmail());
+    }
+
 }
