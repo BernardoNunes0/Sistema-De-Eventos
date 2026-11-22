@@ -182,4 +182,15 @@ class CadastroDeParticipantesTest {
         assertEquals(1, cadastro.listar().size());
     }
 
+    @Test
+    void deveRecusarExclusaoDeCodigoNaoCadastrado() {
+        final CadastroDeParticipantes cadastro = new CadastroDeParticipantes();
+        final Participante ana = new Participante("001", "Ana", "ana@example.com");
+        cadastro.cadastrar(ana);
+
+        assertThrows(IllegalArgumentException.class, () -> cadastro.excluir("999"));
+
+        assertSame(ana, cadastro.buscarPorCodigo("001"));
+    }
+
 }
