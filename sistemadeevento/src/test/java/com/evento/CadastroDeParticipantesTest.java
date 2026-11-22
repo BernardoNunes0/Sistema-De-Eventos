@@ -40,4 +40,18 @@ class CadastroDeParticipantesTest {
         assertThrows(IllegalArgumentException.class, () -> cadastro.cadastrar(null));
     }
 
+    /** Verifica o cadastro de participantes com códigos diferentes. */
+    @Test
+    void deveCadastrarParticipantesComCodigosDiferentes() {
+        final CadastroDeParticipantes cadastro = new CadastroDeParticipantes();
+        final Participante ana = new Participante("001", "Ana", "ana@example.com");
+        final Participante bruno = new Participante("002", "Bruno", "bruno@example.com");
+
+        cadastro.cadastrar(ana);
+        cadastro.cadastrar(bruno);
+
+        assertSame(ana, cadastro.buscarPorCodigo("001"));
+        assertSame(bruno, cadastro.buscarPorCodigo("002"));
+    }
+
 }
