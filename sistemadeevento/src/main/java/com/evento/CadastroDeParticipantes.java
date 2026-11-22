@@ -46,4 +46,16 @@ public final class CadastroDeParticipantes {
         return new ArrayList<>(participantes.values());
     }
 
+    /**
+     * Atualiza o nome e o e-mail de um participante cadastrado.
+     *
+     * @param codigo código do participante
+     * @param novoNome novo nome
+     * @param novoEmail novo e-mail
+     */
+    public void atualizar(final String codigo, final String novoNome, final String novoEmail) {
+        final Participante participante = buscarPorCodigo(codigo);
+        participante.atualizarDados(novoNome, novoEmail);
+    }
+
 }
