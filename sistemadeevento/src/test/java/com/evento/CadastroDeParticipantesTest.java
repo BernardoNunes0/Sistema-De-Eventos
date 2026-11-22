@@ -121,4 +121,15 @@ class CadastroDeParticipantesTest {
         assertEquals("ana.silva@example.com", ana.getEmail());
     }
 
+    @Test
+    void deveAceitarNomeComUmCaractereAoAtualizar() {
+        final CadastroDeParticipantes cadastro = new CadastroDeParticipantes();
+        final Participante ana = new Participante("001", "Ana", "ana@example.com");
+        cadastro.cadastrar(ana);
+
+        cadastro.atualizar("001", "A", "ana@example.com");
+
+        assertEquals("A", ana.getNome());
+    }
+
 }
