@@ -108,4 +108,17 @@ class CadastroDeParticipantesTest {
         assertEquals(1, cadastro.listar().size());
     }
 
+    @Test
+    void deveAtualizarNomeEEmailDoParticipante() {
+        final CadastroDeParticipantes cadastro = new CadastroDeParticipantes();
+        final Participante ana = new Participante("001", "Ana", "ana@example.com");
+        cadastro.cadastrar(ana);
+
+        cadastro.atualizar("001", "Ana Silva", "ana.silva@example.com");
+
+        assertSame(ana, cadastro.buscarPorCodigo("001"));
+        assertEquals("Ana Silva", ana.getNome());
+        assertEquals("ana.silva@example.com", ana.getEmail());
+    }
+
 }
