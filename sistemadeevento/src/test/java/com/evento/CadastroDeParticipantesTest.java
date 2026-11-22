@@ -1,10 +1,13 @@
 package com.evento;
 
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /** Testes do cadastro de participantes. */
 class CadastroDeParticipantesTest {
@@ -68,6 +71,41 @@ class CadastroDeParticipantesTest {
         cadastro.cadastrar(new Participante("001", "Ana", "ana@example.com"));
 
         assertNull(cadastro.buscarPorCodigo("002"));
+    }
+
+    @Test
+    void deveListarCadastroVazio() {
+        final CadastroDeParticipantes cadastro = new CadastroDeParticipantes();
+
+        assertTrue(cadastro.listar().isEmpty());
+    }
+
+    @Test
+    void deveListarTodosOsParticipantes() {
+        final CadastroDeParticipantes cadastro = new CadastroDeParticipantes();
+        final Participante ana = new Participante("001", "Ana", "ana@example.com");
+        final Participante bruno = new Participante("002", "Bruno", "bruno@example.com");
+
+        cadastro.cadastrar(ana);
+        cadastro.cadastrar(bruno);
+
+        final List<Participante> lista = cadastro.listar();
+
+        assertEquals(2, lista.size());
+        assertTrue(lista.contains(ana));
+        assertTrue(lista.contains(bruno));
+    }
+
+    @Test
+    void devePreservarCadastroAoLimparListaRetornada() {
+        final CadastroDeParticipantes cadastro = new CadastroDeParticipantes();
+        final Participante ana = new Participante("001", "Ana", "ana@example.com");
+        cadastro.cadastrar(ana);
+
+        cadastro.listar().clear();
+
+        assertSame(ana, cadastro.buscarPorCodigo("001"));
+        assertEquals(1, cadastro.listar().size());
     }
 
 }
