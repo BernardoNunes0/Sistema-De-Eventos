@@ -55,6 +55,9 @@ public final class CadastroDeParticipantes {
      */
     public void atualizar(final String codigo, final String novoNome, final String novoEmail) {
         final Participante participante = buscarPorCodigo(codigo);
+        if (participante == null) {
+            throw new IllegalArgumentException("Participante não encontrado.");
+        }
         participante.atualizarDados(novoNome, novoEmail);
     }
 
