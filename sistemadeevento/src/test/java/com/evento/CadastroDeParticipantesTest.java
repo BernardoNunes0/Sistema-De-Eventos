@@ -132,4 +132,14 @@ class CadastroDeParticipantesTest {
         assertEquals("A", ana.getNome());
     }
 
+    @Test
+    void deveRecusarAtualizacaoDeCodigoNaoCadastrado() {
+        final CadastroDeParticipantes cadastro = new CadastroDeParticipantes();
+
+        assertThrows(IllegalArgumentException.class,
+                () -> cadastro.atualizar("999", "Ana", "ana@example.com"));
+
+        assertTrue(cadastro.listar().isEmpty());
+    }
+
 }
