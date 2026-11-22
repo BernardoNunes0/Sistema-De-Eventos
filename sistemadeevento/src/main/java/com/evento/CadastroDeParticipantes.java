@@ -1,6 +1,8 @@
 package com.evento;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /** Gerencia o cadastro de participantes. */
@@ -34,4 +36,14 @@ public final class CadastroDeParticipantes {
     public Participante buscarPorCodigo(final String codigo) {
         return participantes.get(codigo);
     }
+
+    /**
+     * Lista os participantes cadastrados.
+     *
+     * @return cópia da lista de participantes
+     */
+    public List<Participante> listar() {
+        return new ArrayList<>(participantes.values());
+    }
+
 }
