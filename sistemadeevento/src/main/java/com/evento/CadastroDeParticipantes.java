@@ -13,9 +13,16 @@ public final class CadastroDeParticipantes {
      * Cadastra um participante pelo código.
      *
      * @param participante participante a cadastrar
+     * @throws IllegalArgumentException se o participante for nulo ou o código já existir
      */
     public void cadastrar(final Participante participante) {
-        participantes.put(participante.getCodigo(), participante);
+        if (participante == null) {
+            throw new IllegalArgumentException("O participante não pode ser nulo.");
+        }
+
+        if (participantes.putIfAbsent(participante.getCodigo(), participante) != null) {
+            throw new IllegalArgumentException("Já existe um participante com esse código.");
+        }
     }
 
     /**
