@@ -58,6 +58,9 @@ public final class CadastroDeParticipantes {
         if (participante == null) {
             throw new IllegalArgumentException("Participante não encontrado.");
         }
+        if (novoEmail == null || !novoEmail.contains("@")) {
+            throw new IllegalArgumentException("E-mail inválido.");
+        }
         participante.atualizarDados(novoNome, novoEmail);
     }
 
