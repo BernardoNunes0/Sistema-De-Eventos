@@ -2,6 +2,7 @@ package com.evento;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -52,6 +53,21 @@ class CadastroDeParticipantesTest {
 
         assertSame(ana, cadastro.buscarPorCodigo("001"));
         assertSame(bruno, cadastro.buscarPorCodigo("002"));
+    }
+
+    @Test
+    void deveRetornarNuloAoBuscarEmCadastroVazio() {
+        final CadastroDeParticipantes cadastro = new CadastroDeParticipantes();
+
+        assertNull(cadastro.buscarPorCodigo("001"));
+    }
+
+    @Test
+    void deveRetornarNuloParaCodigoNaoCadastrado() {
+        final CadastroDeParticipantes cadastro = new CadastroDeParticipantes();
+        cadastro.cadastrar(new Participante("001", "Ana", "ana@example.com"));
+
+        assertNull(cadastro.buscarPorCodigo("002"));
     }
 
 }
