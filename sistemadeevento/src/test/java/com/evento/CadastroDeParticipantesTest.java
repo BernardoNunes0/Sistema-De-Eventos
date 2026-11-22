@@ -155,4 +155,16 @@ class CadastroDeParticipantesTest {
         assertEquals("ana@example.com", ana.getEmail());
     }
 
+    @Test
+    void deveExcluirParticipanteCadastrado() {
+        final CadastroDeParticipantes cadastro = new CadastroDeParticipantes();
+        final Participante ana = new Participante("001", "Ana", "ana@example.com");
+        cadastro.cadastrar(ana);
+
+        cadastro.excluir("001");
+
+        assertNull(cadastro.buscarPorCodigo("001"));
+        assertTrue(cadastro.listar().isEmpty());
+    }
+
 }
