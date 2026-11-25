@@ -54,6 +54,28 @@ public class CadastroDeIngressos {
     }
 
     /**
+     * Altera o titular de um ingresso cadastrado.
+     *
+     * @param codigo código do ingresso
+     * @param novoTitular participante que será o novo titular
+     * @throws NullPointerException se o código for nulo
+     * @throws IllegalArgumentException se o ingresso não estiver cadastrado
+     * @throws IllegalStateException se o ingresso não permitir alteração
+     */
+
+    public void alterarIngresso(String codigo, Participante novoTitular) {
+        Objects.requireNonNull(codigo, "O código não pode ser nulo.");
+
+        Ingresso ingresso = ingressos.get(codigo);
+
+        if (ingresso == null) {
+            throw new IllegalArgumentException("Ingresso não encontrado.");
+        }
+
+        ingresso.alterarTitular(novoTitular);
+    }
+
+    /**
      * Verifica se o codigo do ingresso ja esta cadastrado.
      *
      * @param codigo codigo do ingresso
