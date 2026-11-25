@@ -1,7 +1,9 @@
 
 package com.evento;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -40,6 +42,15 @@ public class CadastroDeIngressos {
                 "O código não pode ser nulo.");
 
         return ingressos.get(codigo);
+    }
+
+    /**
+     * Lista todos os ingressos cadastrados no sistema.
+     *
+     * @return lista contendo os ingressos cadastrados
+     */
+    public List<Ingresso> listarIngressos() {
+        return new ArrayList<>(ingressos.values());
     }
 
     /**
