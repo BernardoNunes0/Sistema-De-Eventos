@@ -158,4 +158,64 @@ class CadastroDeIngressosTest {
         assertTrue(ingressos.contains(segundo));
     }
 
+    @Test
+    void deveAlterarTitularDeIngressoCadastrado() {
+        Evento evento = new Evento(
+                "E001", "Festival de Jazz",
+                LocalDateTime.of(
+                        ANO_EVENTO, MES_EVENTO, DIA_EVENTO, HORA_EVENTO, 0),
+                "Mineirão", BigDecimal.ZERO);
+
+        Participante titularAtual = new Participante(
+                "P001", "Ana", "ana@example.com");
+
+        Participante novoTitular = new Participante(
+                "P002", "Carlos", "carlos@example.com");
+
+        Ingresso ingresso = new Ingresso("I001", evento, titularAtual);
+        CadastroDeIngressos cadastro = new CadastroDeIngressos();
+
+        cadastro.emitirIngresso(ingresso);
+        cadastro.alterarIngresso("I001", novoTitular);
+
+        assertSame(novoTitular, ingresso.getTitular());
+        assertSame(ingresso, cadastro.consultarIngresso("I001"));
+    }
+
+    @Test
+    void deveRejeitarAlteracaoDeIngressoInexistente() {
+        CadastroDeIngressos cadastro = new CadastroDeIngressos();
+
+        Participante novoTitular = new Participante(
+                "P002", "Carlos", "carlos@example.com");
+
+        assertThrows(IllegalArgumentException.class,
+                () -> cadastro.alterarIngresso("I999", novoTitular));
+    }
+
+    @Test
+    void deveRejeitarAlteracaoDeIngressoCancelado() {
+        Evento evento = new Evento(
+                "E001", "Festival de Jazz",
+                LocalDateTime.of(
+                        ANO_EVENTO, MES_EVENTO, DIA_EVENTO, HORA_EVENTO, 0),
+                "Mineirão", BigDecimal.ZERO);
+
+        Participante titularAtual = new Participante(
+                "P001", "Ana", "ana@example.com");
+
+        Participante novoTitular = new Participante(
+                "P002", "Carlos", "carlos@example.com");
+
+        Ingresso ingresso = new Ingresso("I001", evento, titularAtual);
+        CadastroDeIngressos cadastro = new CadastroDeIngressos();
+
+        cadastro.emitirIngresso(ingresso);
+        ingresso.cancelar();
+
+        assertThrows(IllegalStateException.class,
+                () -> cadastro.alterarIngresso("I001", novoTitular));
+
+        assertSame(titularAtual, ingresso.getTitular());
+    }
 }
