@@ -62,15 +62,8 @@ public class CadastroDeIngressos {
      * @throws IllegalArgumentException se o ingresso não estiver cadastrado
      * @throws IllegalStateException se o ingresso não permitir alteração
      */
-
     public void alterarIngresso(String codigo, Participante novoTitular) {
-        Objects.requireNonNull(codigo, "O código não pode ser nulo.");
-
-        Ingresso ingresso = ingressos.get(codigo);
-
-        if (ingresso == null) {
-            throw new IllegalArgumentException("Ingresso não encontrado.");
-        }
+        Ingresso ingresso = buscarIngressoObrigatorio(codigo);
 
         ingresso.alterarTitular(novoTitular);
     }
@@ -83,13 +76,29 @@ public class CadastroDeIngressos {
      * @throws IllegalArgumentException se o ingresso não estiver cadastrado
      */
     public void excluirIngresso(String codigo) {
+        buscarIngressoObrigatorio(codigo);
+
+        ingressos.remove(codigo);
+    }
+
+    /**
+     * Busca um ingresso e verifica se ele esta cadastrado.
+     *
+     * @param codigo codigo do ingresso
+     * @return ingresso encontrado
+     * @throws NullPointerException se o codigo for nulo
+     * @throws IllegalArgumentException se o ingresso nao estiver cadastrado
+     */
+    private Ingresso buscarIngressoObrigatorio(String codigo) {
         Objects.requireNonNull(codigo, "O código não pode ser nulo.");
 
-        if (!ingressos.containsKey(codigo)) {
+        Ingresso ingresso = ingressos.get(codigo);
+
+        if (ingresso == null) {
             throw new IllegalArgumentException("Ingresso não encontrado.");
         }
 
-        ingressos.remove(codigo);
+        return ingresso;
     }
 
     /**
