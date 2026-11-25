@@ -13,9 +13,9 @@ public class CadastroDeIngressos {
     /**
      * Emite e cadastra um ingresso no sistema.
      *
-     * @param ingresso ingresso que será cadastrado
+     * @param ingresso ingresso que sera cadastrado
      * @throws NullPointerException se o ingresso for nulo
-     * @throws IllegalArgumentException se o código já estiver cadastrado
+     * @throws IllegalArgumentException se o codigo ja estiver cadastrado
      */
     public void emitirIngresso(Ingresso ingresso) {
         Objects.requireNonNull(ingresso,
@@ -28,14 +28,24 @@ public class CadastroDeIngressos {
         ingressos.put(codigo, ingresso);
     }
 
+    /**
+     * Consulta um ingresso pelo seu codigo.
+     *
+     * @param codigo codigo do ingresso
+     * @return ingresso encontrado ou null se nao existir
+     * @throws NullPointerException se o codigo for nulo
+     */
     public Ingresso consultarIngresso(String codigo) {
+        Objects.requireNonNull(codigo,
+                "O código não pode ser nulo.");
+
         return ingressos.get(codigo);
     }
 
     /**
-     * Verifica se o código do ingresso já está cadastrado.
+     * Verifica se o codigo do ingresso ja esta cadastrado.
      *
-     * @param codigo código do ingresso
+     * @param codigo codigo do ingresso
      */
     private void validarCodigoDuplicado(String codigo) {
         if (ingressos.containsKey(codigo)) {
@@ -43,5 +53,4 @@ public class CadastroDeIngressos {
                     "Já existe um ingresso com esse código.");
         }
     }
-
 }
