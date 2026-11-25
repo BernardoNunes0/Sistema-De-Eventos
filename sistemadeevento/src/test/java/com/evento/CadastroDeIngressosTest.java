@@ -3,11 +3,14 @@ package com.evento;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /** Testes da classe CadastroDeIngressos. */
 class CadastroDeIngressosTest {
@@ -97,6 +100,62 @@ class CadastroDeIngressosTest {
         cadastro.emitirIngresso(ingresso);
 
         assertSame(ingresso, cadastro.consultarIngresso("I001"));
+    }
+
+    @Test
+    void deveRetornarListaVaziaQuandoNaoExistemIngressos() {
+        CadastroDeIngressos cadastro = new CadastroDeIngressos();
+
+        List<Ingresso> ingressos = cadastro.listarIngressos();
+
+        assertTrue(ingressos.isEmpty());
+    }
+
+    @Test
+    void deveListarIngressoCadastrado() {
+        Evento evento = new Evento(
+                "E001", "Festival de Jazz",
+                LocalDateTime.of(
+                        ANO_EVENTO, MES_EVENTO, DIA_EVENTO, HORA_EVENTO, 0),
+                "Mineirão", BigDecimal.ZERO);
+
+        Participante titular = new Participante(
+                "P001", "Ana", "ana@example.com");
+
+        Ingresso ingresso = new Ingresso("I001", evento, titular);
+        CadastroDeIngressos cadastro = new CadastroDeIngressos();
+
+        cadastro.emitirIngresso(ingresso);
+
+        List<Ingresso> ingressos = cadastro.listarIngressos();
+
+        assertEquals(1, ingressos.size());
+        assertTrue(ingressos.contains(ingresso));
+    }
+
+    @Test
+    void deveListarMultiplosIngressos() {
+        Evento evento = new Evento(
+                "E001", "Festival de Jazz",
+                LocalDateTime.of(
+                        ANO_EVENTO, MES_EVENTO, DIA_EVENTO, HORA_EVENTO, 0),
+                "Mineirão", BigDecimal.ZERO);
+
+        Participante titular = new Participante(
+                "P001", "Ana", "ana@example.com");
+
+        Ingresso primeiro = new Ingresso("I001", evento, titular);
+        Ingresso segundo = new Ingresso("I002", evento, titular);
+        CadastroDeIngressos cadastro = new CadastroDeIngressos();
+
+        cadastro.emitirIngresso(primeiro);
+        cadastro.emitirIngresso(segundo);
+
+        List<Ingresso> ingressos = cadastro.listarIngressos();
+
+        assertEquals(2, ingressos.size());
+        assertTrue(ingressos.contains(primeiro));
+        assertTrue(ingressos.contains(segundo));
     }
 
 }
