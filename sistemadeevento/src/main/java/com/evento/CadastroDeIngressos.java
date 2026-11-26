@@ -72,6 +72,24 @@ public class CadastroDeIngressos {
     }
 
     /**
+     * Exclui um ingresso cadastrado pelo codigo.
+     *
+     * @param codigo codigo do ingresso a excluir
+     * @throws NullPointerException se o codigo for nulo
+     * @throws IllegalArgumentException se o ingresso nao existir
+     */
+    public void excluirIngresso(String codigo) {
+        Objects.requireNonNull(codigo, "O codigo nao pode ser nulo.");
+
+        Ingresso ingresso = ingressos.remove(codigo);
+
+        if (ingresso == null) {
+            throw new IllegalArgumentException(
+                    "Ingresso nao encontrado.");
+        }
+    }
+
+    /**
      * Verifica se o código do ingresso já está cadastrado.
      *
      * @param codigo código do ingresso
