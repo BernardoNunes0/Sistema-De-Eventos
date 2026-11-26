@@ -58,9 +58,15 @@ public class CadastroDeIngressos {
      *
      * @param codigo codigo do ingresso
      * @param novoTitular novo titular do ingresso
+     * @throws IllegalArgumentException se o ingresso nao existir
      */
     public void alterarIngresso(String codigo, Participante novoTitular) {
         Ingresso ingresso = consultarIngresso(codigo);
+
+        if (ingresso == null) {
+            throw new IllegalArgumentException(
+                    "Ingresso nao encontrado.");
+        }
 
         ingresso.alterarTitular(novoTitular);
     }
