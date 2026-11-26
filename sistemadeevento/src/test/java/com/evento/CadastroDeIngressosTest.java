@@ -181,4 +181,15 @@ class CadastroDeIngressosTest {
         assertSame(novoTitular, ingresso.getTitular());
         assertSame(ingresso, cadastro.consultarIngresso("I001"));
     }
+
+    @Test
+    void deveRejeitarAlteracaoDeIngressoInexistente() {
+        CadastroDeIngressos cadastro = new CadastroDeIngressos();
+
+        Participante novoTitular = new Participante(
+                "P002", "Carlos", "carlos@example.com");
+
+        assertThrows(IllegalArgumentException.class,
+                () -> cadastro.alterarIngresso("I999", novoTitular));
+    }
 }
