@@ -54,6 +54,18 @@ public class CadastroDeIngressos {
     }
 
     /**
+     * Altera o titular de um ingresso cadastrado.
+     *
+     * @param codigo codigo do ingresso
+     * @param novoTitular novo titular do ingresso
+     */
+    public void alterarIngresso(String codigo, Participante novoTitular) {
+        Ingresso ingresso = consultarIngresso(codigo);
+
+        ingresso.alterarTitular(novoTitular);
+    }
+
+    /**
      * Verifica se o código do ingresso já está cadastrado.
      *
      * @param codigo código do ingresso
