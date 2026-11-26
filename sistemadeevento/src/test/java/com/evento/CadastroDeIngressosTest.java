@@ -3,11 +3,13 @@ package com.evento;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /** Testes da classe CadastroDeIngressos. */
 class CadastroDeIngressosTest {
@@ -99,4 +101,12 @@ class CadastroDeIngressosTest {
         assertSame(ingresso, cadastro.consultarIngresso("I001"));
     }
 
+    @Test
+    void deveRetornarListaVaziaQuandoNaoExistemIngressos() {
+        CadastroDeIngressos cadastro = new CadastroDeIngressos();
+
+        List<Ingresso> ingressos = cadastro.listarIngressos();
+
+        assertTrue(ingressos.isEmpty());
+    }
 }
