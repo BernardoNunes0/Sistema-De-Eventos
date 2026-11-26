@@ -1,7 +1,9 @@
 
 package com.evento;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -40,6 +42,51 @@ public class CadastroDeIngressos {
                 "O código não pode ser nulo.");
 
         return ingressos.get(codigo);
+    }
+
+    /**
+     * Lista todos os ingressos cadastrados no sistema.
+     *
+     * @return lista dos ingressos cadastrados
+     */
+    public List<Ingresso> listarIngressos() {
+        return new ArrayList<>(ingressos.values());
+    }
+
+    /**
+     * Altera o titular de um ingresso cadastrado.
+     *
+     * @param codigo codigo do ingresso
+     * @param novoTitular novo titular do ingresso
+     * @throws IllegalArgumentException se o ingresso nao existir
+     */
+    public void alterarIngresso(String codigo, Participante novoTitular) {
+        Ingresso ingresso = consultarIngresso(codigo);
+
+        if (ingresso == null) {
+            throw new IllegalArgumentException(
+                    "Ingresso nao encontrado.");
+        }
+
+        ingresso.alterarTitular(novoTitular);
+    }
+
+    /**
+     * Exclui um ingresso cadastrado pelo codigo.
+     *
+     * @param codigo codigo do ingresso a excluir
+     * @throws NullPointerException se o codigo for nulo
+     * @throws IllegalArgumentException se o ingresso nao existir
+     */
+    public void excluirIngresso(String codigo) {
+        Objects.requireNonNull(codigo, "O codigo nao pode ser nulo.");
+
+        Ingresso ingresso = ingressos.remove(codigo);
+
+        if (ingresso == null) {
+            throw new IllegalArgumentException(
+                    "Ingresso nao encontrado.");
+        }
     }
 
     /**
