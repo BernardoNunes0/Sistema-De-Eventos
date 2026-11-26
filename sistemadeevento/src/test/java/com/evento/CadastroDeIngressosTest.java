@@ -238,4 +238,12 @@ class CadastroDeIngressosTest {
 
         assertNull(cadastro.consultarIngresso("I001"));
     }
+
+    @Test
+    void deveRejeitarExclusaoDeIngressoInexistente() {
+        CadastroDeIngressos cadastro = new CadastroDeIngressos();
+
+        assertThrows(IllegalArgumentException.class,
+                () -> cadastro.excluirIngresso("I999"));
+    }
 }
