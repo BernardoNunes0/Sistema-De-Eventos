@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -63,4 +64,39 @@ class CadastroDeIngressosTest {
         assertThrows(NullPointerException.class,
                 () -> cadastro.emitirIngresso(null));
     }
+
+    @Test
+    void deveRetornarNuloAoConsultarIngressoInexistente() {
+        CadastroDeIngressos cadastro = new CadastroDeIngressos();
+
+        assertNull(cadastro.consultarIngresso("I999"));
+    }
+
+    @Test
+    void deveRejeitarConsultaComCodigoNulo() {
+        CadastroDeIngressos cadastro = new CadastroDeIngressos();
+
+        assertThrows(NullPointerException.class,
+                () -> cadastro.consultarIngresso(null));
+    }
+
+    @Test
+    void deveConsultarIngressoCadastrado() {
+        Evento evento = new Evento(
+                "E001", "Festival de Jazz",
+                LocalDateTime.of(
+                        ANO_EVENTO, MES_EVENTO, DIA_EVENTO, HORA_EVENTO, 0),
+                "Mineirão", BigDecimal.ZERO);
+
+        Participante titular = new Participante(
+                "P001", "Ana", "ana@example.com");
+
+        Ingresso ingresso = new Ingresso("I001", evento, titular);
+        CadastroDeIngressos cadastro = new CadastroDeIngressos();
+
+        cadastro.emitirIngresso(ingresso);
+
+        assertSame(ingresso, cadastro.consultarIngresso("I001"));
+    }
+
 }
