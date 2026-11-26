@@ -80,4 +80,23 @@ class CadastroDeIngressosTest {
                 () -> cadastro.consultarIngresso(null));
     }
 
+    @Test
+    void deveConsultarIngressoCadastrado() {
+        Evento evento = new Evento(
+                "E001", "Festival de Jazz",
+                LocalDateTime.of(
+                        ANO_EVENTO, MES_EVENTO, DIA_EVENTO, HORA_EVENTO, 0),
+                "Mineirão", BigDecimal.ZERO);
+
+        Participante titular = new Participante(
+                "P001", "Ana", "ana@example.com");
+
+        Ingresso ingresso = new Ingresso("I001", evento, titular);
+        CadastroDeIngressos cadastro = new CadastroDeIngressos();
+
+        cadastro.emitirIngresso(ingresso);
+
+        assertSame(ingresso, cadastro.consultarIngresso("I001"));
+    }
+
 }
