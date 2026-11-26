@@ -28,7 +28,17 @@ public class CadastroDeIngressos {
         ingressos.put(codigo, ingresso);
     }
 
+    /**
+     * Consulta um ingresso pelo seu codigo.
+     *
+     * @param codigo codigo do ingresso
+     * @return ingresso encontrado ou null se nao existir
+     * @throws NullPointerException se o codigo for nulo
+     */
     public Ingresso consultarIngresso(String codigo) {
+        Objects.requireNonNull(codigo,
+                "O código não pode ser nulo.");
+
         return ingressos.get(codigo);
     }
 
