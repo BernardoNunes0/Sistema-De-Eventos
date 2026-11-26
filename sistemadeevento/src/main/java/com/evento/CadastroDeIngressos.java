@@ -75,9 +75,15 @@ public class CadastroDeIngressos {
      * Exclui um ingresso cadastrado pelo codigo.
      *
      * @param codigo codigo do ingresso a excluir
+     * @throws IllegalArgumentException se o ingresso nao existir
      */
     public void excluirIngresso(String codigo) {
-        ingressos.remove(codigo);
+        Ingresso ingresso = ingressos.remove(codigo);
+
+        if (ingresso == null) {
+            throw new IllegalArgumentException(
+                    "Ingresso nao encontrado.");
+        }
     }
 
     /**
