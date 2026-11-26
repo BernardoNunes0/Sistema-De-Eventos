@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -108,5 +109,27 @@ class CadastroDeIngressosTest {
         List<Ingresso> ingressos = cadastro.listarIngressos();
 
         assertTrue(ingressos.isEmpty());
+    }
+
+    @Test
+    void deveListarIngressoCadastrado() {
+        Evento evento = new Evento(
+                "E001", "Festival de Jazz",
+                LocalDateTime.of(
+                        ANO_EVENTO, MES_EVENTO, DIA_EVENTO, HORA_EVENTO, 0),
+                "Mineirão", BigDecimal.ZERO);
+
+        Participante titular = new Participante(
+                "P001", "Ana", "ana@example.com");
+
+        Ingresso ingresso = new Ingresso("I001", evento, titular);
+        CadastroDeIngressos cadastro = new CadastroDeIngressos();
+
+        cadastro.emitirIngresso(ingresso);
+
+        List<Ingresso> ingressos = cadastro.listarIngressos();
+
+        assertEquals(1, ingressos.size());
+        assertTrue(ingressos.contains(ingresso));
     }
 }
