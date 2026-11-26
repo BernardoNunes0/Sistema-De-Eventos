@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -62,5 +63,12 @@ class CadastroDeIngressosTest {
 
         assertThrows(NullPointerException.class,
                 () -> cadastro.emitirIngresso(null));
+    }
+
+    @Test
+    void deveRetornarNuloAoConsultarIngressoInexistente() {
+        CadastroDeIngressos cadastro = new CadastroDeIngressos();
+
+        assertNull(cadastro.consultarIngresso("I999"));
     }
 }
