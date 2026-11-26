@@ -71,4 +71,13 @@ class CadastroDeIngressosTest {
 
         assertNull(cadastro.consultarIngresso("I999"));
     }
+
+    @Test
+    void deveRejeitarConsultaComCodigoNulo() {
+        CadastroDeIngressos cadastro = new CadastroDeIngressos();
+
+        assertThrows(NullPointerException.class,
+                () -> cadastro.consultarIngresso(null));
+    }
+
 }
