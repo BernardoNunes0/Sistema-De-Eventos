@@ -246,4 +246,12 @@ class CadastroDeIngressosTest {
         assertThrows(IllegalArgumentException.class,
                 () -> cadastro.excluirIngresso("I999"));
     }
+
+    @Test
+    void deveRejeitarExclusaoComCodigoNulo() {
+        CadastroDeIngressos cadastro = new CadastroDeIngressos();
+
+        assertThrows(NullPointerException.class,
+                () -> cadastro.excluirIngresso(null));
+    }
 }
