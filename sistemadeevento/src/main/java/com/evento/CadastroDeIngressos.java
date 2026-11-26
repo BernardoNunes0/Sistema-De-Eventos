@@ -72,6 +72,15 @@ public class CadastroDeIngressos {
     }
 
     /**
+     * Exclui um ingresso cadastrado pelo codigo.
+     *
+     * @param codigo codigo do ingresso a excluir
+     */
+    public void excluirIngresso(String codigo) {
+        ingressos.remove(codigo);
+    }
+
+    /**
      * Verifica se o código do ingresso já está cadastrado.
      *
      * @param codigo código do ingresso
