@@ -78,4 +78,23 @@ class AppTest {
             System.setOut(saidaOriginal);
         }
     }
+
+    @Test
+    void deveExibirExclusoesNaDemonstracao() {
+        final ByteArrayOutputStream saida = new ByteArrayOutputStream();
+        final PrintStream saidaOriginal = System.out;
+
+        try (PrintStream captura = new PrintStream(saida)) {
+            System.setOut(captura);
+
+            App.main(new String[0]);
+
+            final String texto = saida.toString();
+            assertTrue(texto.contains("Ingresso excluído: I001"));
+            assertTrue(texto.contains("Participante excluído: P001"));
+            assertTrue(texto.contains("Evento excluído: E001"));
+        } finally {
+            System.setOut(saidaOriginal);
+        }
+    }
 }
