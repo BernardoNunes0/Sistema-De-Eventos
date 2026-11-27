@@ -2,6 +2,7 @@ package com.evento;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Scanner;
 
 /** Executa a demonstração do sistema no terminal. */
 public final class App {
@@ -10,11 +11,40 @@ public final class App {
     }
 
     /**
-     * Inicia a demonstração do sistema.
+     * Inicia o sistema no terminal.
      *
      * @param args argumentos da execução
      */
     public static void main(String[] args) {
+        if (args.length > 0 && "--demo".equals(args[0])) {
+            executarDemonstracao();
+            return;
+        }
+
+        executarMenu();
+    }
+
+    private static void executarMenu() {
+        try (Scanner teclado = new Scanner(System.in)) {
+            while (true) {
+                System.out.println("Sistema de Eventos");
+                System.out.println("1 - Eventos");
+                System.out.println("0 - Sair");
+                System.out.print("Escolha uma opção: ");
+                System.out.flush();
+
+                if (!teclado.hasNextLine() || "0".equals(teclado.nextLine().trim())) {
+                    break;
+                }
+
+                System.out.println("Opção indisponível.");
+            }
+        }
+
+        System.out.println("Sistema encerrado.");
+    }
+
+    private static void executarDemonstracao() {
         final CadastroDeEventos eventos = new CadastroDeEventos();
         final Evento evento = new Evento(
                 "E001",
