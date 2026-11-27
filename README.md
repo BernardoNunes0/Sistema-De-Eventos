@@ -17,13 +17,15 @@ Sistema de gestão de eventos, participantes e ingressos, desenvolvido em Java c
 
 ## Funcionalidades
 
-- Cadastro, consulta, listagem, atualização e exclusão de eventos.
-- Cadastro, consulta, listagem, atualização e exclusão de participantes.
-- Emissão, consulta, listagem, alteração de titular e exclusão de ingressos.
-- Controle da situação do ingresso como emitido, utilizado ou cancelado.
-- Validações para impedir operações inválidas, como reutilizar um ingresso ou alterar o titular após seu uso.
+Pelo menu do terminal, é possível:
 
-Os dados são armazenados em memória durante a execução.
+- Cadastrar, consultar por código, alterar e excluir eventos.
+- Cadastrar, consultar por código, alterar e excluir participantes.
+- Emitir, consultar por código, trocar o titular e excluir ingressos.
+
+As classes de cadastro também oferecem métodos para listar todos os registros. A classe `Ingresso` controla as situações emitido, utilizado e cancelado e impede operações inválidas, como usar o mesmo ingresso duas vezes ou trocar o titular após o uso.
+
+Os dados são mantidos em memória durante a execução do programa.
 
 ## Tecnologias
 
