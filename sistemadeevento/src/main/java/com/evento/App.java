@@ -2,6 +2,8 @@ package com.evento;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 /** Executa a demonstração do sistema no terminal. */
@@ -25,23 +27,87 @@ public final class App {
     }
 
     private static void executarMenu() {
+        final CadastroDeEventos eventos = new CadastroDeEventos();
+
         try (Scanner teclado = new Scanner(System.in)) {
             while (true) {
                 System.out.println("Sistema de Eventos");
                 System.out.println("1 - Eventos");
                 System.out.println("0 - Sair");
-                System.out.print("Escolha uma opção: ");
-                System.out.flush();
 
-                if (!teclado.hasNextLine() || "0".equals(teclado.nextLine().trim())) {
+                final String opcao = lerLinha(teclado, "Escolha uma opção: ");
+                if ("0".equals(opcao)) {
                     break;
                 }
-
-                System.out.println("Opção indisponível.");
+                if ("1".equals(opcao)) {
+                    executarMenuEventos(teclado, eventos);
+                } else {
+                    System.out.println("Opção indisponível.");
+                }
             }
+        } catch (NoSuchElementException fimDaEntrada) {
+            System.out.println("Entrada encerrada.");
         }
 
         System.out.println("Sistema encerrado.");
+    }
+
+    private static void executarMenuEventos(Scanner teclado, CadastroDeEventos eventos) {
+        while (true) {
+            System.out.println("Eventos");
+            System.out.println("1 - Cadastrar");
+            System.out.println("2 - Consultar");
+            System.out.println("0 - Voltar");
+
+            final String opcao = lerLinha(teclado, "Escolha uma opção: ");
+            if ("0".equals(opcao)) {
+                return;
+            }
+            if ("1".equals(opcao)) {
+                cadastrarEvento(teclado, eventos);
+            } else if ("2".equals(opcao)) {
+                consultarEvento(teclado, eventos);
+            } else {
+                System.out.println("Opção indisponível.");
+            }
+        }
+    }
+
+    private static void cadastrarEvento(Scanner teclado, CadastroDeEventos eventos) {
+        try {
+            final String codigo = lerLinha(teclado, "Código do evento: ");
+            final String nome = lerLinha(teclado, "Nome do evento: ");
+            final String dataDigitada = lerLinha(teclado, "Data e hora (AAAA-MM-DD HH:MM): ");
+            final LocalDateTime data = LocalDateTime.parse(dataDigitada.replace(' ', 'T'));
+            final String local = lerLinha(teclado, "Local do evento: ");
+            final String precoDigitado = lerLinha(teclado, "Preço do evento: ");
+            final BigDecimal preco = new BigDecimal(precoDigitado.replace(',', '.'));
+
+            final Evento evento = new Evento(codigo, nome, data, local, preco);
+            eventos.cadastrar(evento);
+
+            System.out.println("Evento cadastrado: " + evento.getCodigo() + " - " + evento.getNome());
+        } catch (DateTimeParseException | IllegalArgumentException erro) {
+            System.out.println("Não foi possível cadastrar o evento. " + erro.getMessage());
+        }
+    }
+
+    private static void consultarEvento(Scanner teclado, CadastroDeEventos eventos) {
+        final String codigo = lerLinha(teclado, "Código do evento: ");
+        final Evento evento = eventos.buscarPorCodigo(codigo);
+
+        if (evento == null) {
+            System.out.println("Evento não encontrado.");
+            return;
+        }
+
+        System.out.println("Evento encontrado: " + evento.getCodigo() + " - " + evento.getNome());
+    }
+
+    private static String lerLinha(Scanner teclado, String mensagem) {
+        System.out.print(mensagem);
+        System.out.flush();
+        return teclado.nextLine().trim();
     }
 
     private static void executarDemonstracao() {
