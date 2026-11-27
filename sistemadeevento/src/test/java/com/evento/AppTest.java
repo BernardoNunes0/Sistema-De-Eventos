@@ -42,4 +42,21 @@ class AppTest {
             System.setOut(saidaOriginal);
         }
     }
+
+    @Test
+    void deveExibirIngressoEmitidoNaDemonstracao() {
+        final ByteArrayOutputStream saida = new ByteArrayOutputStream();
+        final PrintStream saidaOriginal = System.out;
+
+        try (PrintStream captura = new PrintStream(saida)) {
+            System.setOut(captura);
+
+            App.main(new String[0]);
+
+            assertTrue(saida.toString().contains(
+                    "Ingresso emitido: I001 - Festival de Jazz - Ana"));
+        } finally {
+            System.setOut(saidaOriginal);
+        }
+    }
 }
