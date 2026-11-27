@@ -28,31 +28,41 @@ public final class App {
     private static void executarMenu() {
         final CadastroDeEventos eventos = new CadastroDeEventos();
         final CadastroDeParticipantes participantes = new CadastroDeParticipantes();
+        final CadastroDeIngressos ingressos = new CadastroDeIngressos();
 
         try (Scanner teclado = new Scanner(System.in)) {
             while (true) {
                 System.out.println("Sistema de Eventos");
                 System.out.println("1 - Eventos");
                 System.out.println("2 - Participantes");
+                System.out.println("3 - Ingressos");
                 System.out.println("0 - Sair");
 
                 final String opcao = lerLinha(teclado, "Escolha uma opção: ");
                 if ("0".equals(opcao)) {
                     break;
                 }
-                if ("1".equals(opcao)) {
-                    MenuEventos.executar(teclado, eventos);
-                } else if ("2".equals(opcao)) {
-                    MenuParticipantes.executar(teclado, participantes);
-                } else {
-                    System.out.println("Opção indisponível.");
-                }
+
+                executarOpcao(teclado, opcao, eventos, participantes, ingressos);
             }
         } catch (NoSuchElementException fimDaEntrada) {
             System.out.println("Entrada encerrada.");
         }
 
         System.out.println("Sistema encerrado.");
+    }
+
+    private static void executarOpcao(Scanner teclado, String opcao, CadastroDeEventos eventos,
+            CadastroDeParticipantes participantes, CadastroDeIngressos ingressos) {
+        if ("1".equals(opcao)) {
+            MenuEventos.executar(teclado, eventos);
+        } else if ("2".equals(opcao)) {
+            MenuParticipantes.executar(teclado, participantes);
+        } else if ("3".equals(opcao)) {
+            MenuIngressos.executar(teclado, ingressos, eventos, participantes);
+        } else {
+            System.out.println("Opção indisponível.");
+        }
     }
 
     /**
