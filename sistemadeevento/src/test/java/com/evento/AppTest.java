@@ -69,6 +69,22 @@ class AppTest {
         assertTrue(texto.contains("Evento encontrado: E002 - Feira de Tecnologia"), texto);
     }
 
+    @Test
+    void deveAlterarEExcluirEventoPeloMenu() {
+        final String entrada = "1\n1\n"
+                + "E002\nFeira de Tecnologia\n2026-12-10 19:30\n"
+                + "Centro de Convencoes\n25.50\n"
+                + "3\nE002\nFeira de Tecnologia BH\n2026-12-11 20:00\n"
+                + "Sala Principal\n30.00\n"
+                + "2\nE002\n4\nE002\n2\nE002\n0\n0\n";
+
+        final String texto = executarApp(entrada);
+
+        assertTrue(texto.contains("Evento encontrado: E002 - Feira de Tecnologia BH"), texto);
+        assertTrue(texto.contains("Evento excluído: E002"), texto);
+        assertTrue(texto.contains("Evento não encontrado."), texto);
+    }
+
     private static String executarDemonstracao() {
         return executarApp("", "--demo");
     }
