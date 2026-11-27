@@ -38,5 +38,16 @@ public final class App {
 
         System.out.println("Participante cadastrado: "
                 + cadastradoParticipante.getCodigo() + " - " + cadastradoParticipante.getNome());
+        final CadastroDeIngressos ingressos = new CadastroDeIngressos();
+        final Ingresso ingresso = new Ingresso("I001", cadastrado, cadastradoParticipante);
+
+        ingressos.emitirIngresso(ingresso);
+
+        final Ingresso ingressoEmitido = ingressos.consultarIngresso("I001");
+
+        System.out.println("Ingresso emitido: "
+                + ingressoEmitido.getCodigo() + " - "
+                + ingressoEmitido.getEvento().getNome() + " - "
+                + ingressoEmitido.getTitular().getNome());
     }
 }
