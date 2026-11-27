@@ -1,1 +1,88 @@
-# Sistema-De-Eventos
+# Sistema de Eventos
+
+Projeto desenvolvido para o trabalho prático A3 da disciplina de Garantia de Qualidade de Software.
+
+## Tema
+
+Sistema de gestão de eventos, participantes e ingressos, desenvolvido em Java com orientação a objetos, testes unitários e desenvolvimento orientado a testes (TDD).
+
+## Integrantes
+
+- Bernardo Nunes Gomes
+- Luiza Karen Borges Pimentel
+- Pedro Henrique Alves Soares
+- Kauã Kellysson de Oliveira Mendes
+- Lucas Medeiros dos Santos
+- Álvaro Vasconcelos Garcia Figueiredo
+
+## Funcionalidades
+
+- Cadastro, consulta, listagem, atualização e exclusão de eventos.
+- Cadastro, consulta, listagem, atualização e exclusão de participantes.
+- Emissão, consulta, listagem, alteração de titular e exclusão de ingressos.
+- Controle da situação do ingresso como emitido, utilizado ou cancelado.
+- Validações para impedir operações inválidas, como reutilizar um ingresso ou alterar o titular após seu uso.
+
+Os dados são armazenados em memória durante a execução.
+
+## Tecnologias
+
+- Java 8
+- Maven
+- JUnit 5
+- Checkstyle
+- JaCoCo
+- Git e GitHub
+
+## Requisitos para executar
+
+- JDK 8 instalado.
+- Maven 3.6.3 ou superior instalado.
+- Comandos `java`, `javac` e `mvn` disponíveis no terminal.
+
+## Como obter o projeto
+
+```bash
+git clone https://github.com/BernardoNunes0/Sistema-De-Eventos.git
+cd Sistema-De-Eventos/sistemadeevento
+```
+
+Os comandos seguintes devem ser executados na pasta `sistemadeevento`, onde está o arquivo `pom.xml`.
+
+## Como compilar
+
+```bash
+mvn compile
+```
+
+## Como executar os testes
+
+Para executar toda a suíte de testes:
+
+```bash
+mvn test
+```
+
+Para executar apenas os testes de uma classe, como `IngressoTest`:
+
+```bash
+mvn test "-Dtest=IngressoTest"
+```
+
+A execução também realiza a verificação de estilo pelo Checkstyle. Após os testes aprovados, o JaCoCo gera o relatório de cobertura em `target/site/jacoco/jacoco.xml`.
+
+## Como executar o programa
+
+Após compilar:
+
+```bash
+java -cp target/classes com.evento.App
+```
+
+Atualmente, a classe `App` exibe a mensagem `Hello World!`. A demonstração das operações do sistema será integrada nessa classe.
+
+## Desenvolvimento e testes
+
+O histórico registra etapas de desenvolvimento com os prefixos `RED`, `GREEN` e `REFACTOR`, além de testes adicionais identificados como `TEST`.
+
+Os testes verificam operações válidas, valores limite e situações de erro, conforme aplicável a cada comportamento. As alterações são desenvolvidas em branches e integradas à `main` por Pull Requests.
