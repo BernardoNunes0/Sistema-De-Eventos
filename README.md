@@ -73,13 +73,20 @@ A execução também realiza a verificação de estilo pelo Checkstyle. Após os
 
 ## Como executar o programa
 
-Após compilar:
+Na pasta `sistemadeevento`, compile e execute:
 
 ```bash
+mvn compile
 java -cp target/classes com.evento.App
 ```
 
-Atualmente, a classe `App` exibe a mensagem `Hello World!`. A demonstração das operações do sistema será integrada nessa classe.
+O menu interativo permite cadastrar, consultar, alterar e excluir eventos, participantes e ingressos. Os dados ficam em memória durante a execução.
+
+Para rodar a demonstração automática com dados de exemplo, use:
+
+```bash
+java -cp target/classes com.evento.App --demo
+```
 
 ## Desenvolvimento e testes
 
