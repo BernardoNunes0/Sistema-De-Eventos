@@ -29,5 +29,14 @@ public final class App {
 
         System.out.println("Evento cadastrado: "
                 + cadastrado.getCodigo() + " - " + cadastrado.getNome());
+        final CadastroDeParticipantes participantes = new CadastroDeParticipantes();
+        final Participante participante = new Participante("P001", "Ana", "ana@example.com");
+
+        participantes.cadastrar(participante);
+
+        final Participante cadastradoParticipante = participantes.buscarPorCodigo("P001");
+
+        System.out.println("Participante cadastrado: "
+                + cadastradoParticipante.getCodigo() + " - " + cadastradoParticipante.getNome());
     }
 }
