@@ -25,4 +25,21 @@ class AppTest {
             System.setOut(saidaOriginal);
         }
     }
+
+    @Test
+    void deveExibirParticipanteCadastradoNaDemonstracao() {
+        final ByteArrayOutputStream saida = new ByteArrayOutputStream();
+        final PrintStream saidaOriginal = System.out;
+
+        try (PrintStream captura = new PrintStream(saida)) {
+            System.setOut(captura);
+
+            App.main(new String[0]);
+
+            assertTrue(saida.toString().contains(
+                    "Participante cadastrado: P001 - Ana"));
+        } finally {
+            System.setOut(saidaOriginal);
+        }
+    }
 }
