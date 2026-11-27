@@ -56,6 +56,19 @@ class AppTest {
         assertTrue(texto.contains("Sistema encerrado."), texto);
     }
 
+    @Test
+    void deveCadastrarEConsultarEventoPeloMenu() {
+        final String entrada = "1\n1\n"
+                + "E002\nFeira de Tecnologia\n2026-12-10 19:30\n"
+                + "Centro de Convencoes\n25.50\n"
+                + "2\nE002\n0\n0\n";
+
+        final String texto = executarApp(entrada);
+
+        assertTrue(texto.contains("Evento cadastrado: E002 - Feira de Tecnologia"), texto);
+        assertTrue(texto.contains("Evento encontrado: E002 - Feira de Tecnologia"), texto);
+    }
+
     private static String executarDemonstracao() {
         return executarApp("", "--demo");
     }
