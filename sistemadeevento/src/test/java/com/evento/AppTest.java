@@ -1,7 +1,10 @@
 package com.evento;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.io.PrintStream;
+import java.nio.charset.StandardCharsets;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -30,9 +33,10 @@ class AppTest {
     @Test
     void deveExibirDadosAtualizadosNaDemonstracao() {
         final String texto = executarDemonstracao();
-        assertTrue(texto.contains("Evento atualizado: E001 - Festival de Jazz BH"));
-        assertTrue(texto.contains("Participante atualizado: P001 - Ana Silva"));
-        assertTrue(texto.contains("Titular atualizado: I001 - Bruno"));
+
+        assertTrue(texto.contains("Evento atualizado: E001 - Festival de Jazz BH"), texto);
+        assertTrue(texto.contains("Participante atualizado: P001 - Ana Silva"), texto);
+        assertTrue(texto.contains("Titular atualizado: I001 - Bruno"), texto);
     }
 
     @Test
@@ -43,15 +47,33 @@ class AppTest {
         assertTrue(texto.contains("Evento excluído: E001"));
     }
 
+    @Test
+    void deveAbrirMenuEEncerrarAoDigitarZero() {
+        final String texto = executarApp("0\n");
+
+        assertTrue(texto.contains("1 - Eventos"), texto);
+        assertTrue(texto.contains("Escolha uma opção"), texto);
+        assertTrue(texto.contains("Sistema encerrado."), texto);
+    }
+
     private static String executarDemonstracao() {
+        return executarApp("", "--demo");
+    }
+
+    private static String executarApp(final String entrada, final String... argumentos) {
         final ByteArrayOutputStream saida = new ByteArrayOutputStream();
+        final InputStream entradaOriginal = System.in;
         final PrintStream saidaOriginal = System.out;
 
         try (PrintStream captura = new PrintStream(saida)) {
+            System.setIn(new ByteArrayInputStream(entrada.getBytes(StandardCharsets.UTF_8)));
             System.setOut(captura);
-            App.main(new String[0]);
+
+            App.main(argumentos);
+
             return saida.toString();
         } finally {
+            System.setIn(entradaOriginal);
             System.setOut(saidaOriginal);
         }
     }
