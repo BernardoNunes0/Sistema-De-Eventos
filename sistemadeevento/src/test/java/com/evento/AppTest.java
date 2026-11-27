@@ -85,6 +85,20 @@ class AppTest {
         assertTrue(texto.contains("Evento não encontrado."), texto);
     }
 
+    @Test
+    void deveGerenciarParticipantePeloMenu() {
+        final String entrada = "2\n1\nP003\nCarla\ncarla@example.com\n"
+                + "3\nP003\nCarla Souza\ncarla.souza@example.com\n"
+                + "2\nP003\n4\nP003\n2\nP003\n0\n0\n";
+
+        final String texto = executarApp(entrada);
+
+        assertTrue(texto.contains("Participante cadastrado: P003 - Carla"), texto);
+        assertTrue(texto.contains("Participante encontrado: P003 - Carla Souza"), texto);
+        assertTrue(texto.contains("Participante excluído: P003"), texto);
+        assertTrue(texto.contains("Participante não encontrado."), texto);
+    }
+
     private static String executarDemonstracao() {
         return executarApp("", "--demo");
     }
