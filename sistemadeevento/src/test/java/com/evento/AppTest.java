@@ -11,88 +11,46 @@ class AppTest {
 
     @Test
     void deveExibirEventoCadastradoNaDemonstracao() {
-        final ByteArrayOutputStream saida = new ByteArrayOutputStream();
-        final PrintStream saidaOriginal = System.out;
-
-        try (PrintStream captura = new PrintStream(saida)) {
-            System.setOut(captura);
-
-            App.main(new String[0]);
-
-            assertTrue(saida.toString().contains(
-                    "Evento cadastrado: E001 - Festival de Jazz"));
-        } finally {
-            System.setOut(saidaOriginal);
-        }
+        final String texto = executarDemonstracao();
+        assertTrue(texto.contains("Evento cadastrado: E001 - Festival de Jazz"));
     }
 
     @Test
     void deveExibirParticipanteCadastradoNaDemonstracao() {
-        final ByteArrayOutputStream saida = new ByteArrayOutputStream();
-        final PrintStream saidaOriginal = System.out;
-
-        try (PrintStream captura = new PrintStream(saida)) {
-            System.setOut(captura);
-
-            App.main(new String[0]);
-
-            assertTrue(saida.toString().contains(
-                    "Participante cadastrado: P001 - Ana"));
-        } finally {
-            System.setOut(saidaOriginal);
-        }
+        final String texto = executarDemonstracao();
+        assertTrue(texto.contains("Participante cadastrado: P001 - Ana"));
     }
 
     @Test
     void deveExibirIngressoEmitidoNaDemonstracao() {
-        final ByteArrayOutputStream saida = new ByteArrayOutputStream();
-        final PrintStream saidaOriginal = System.out;
-
-        try (PrintStream captura = new PrintStream(saida)) {
-            System.setOut(captura);
-
-            App.main(new String[0]);
-
-            assertTrue(saida.toString().contains(
-                    "Ingresso emitido: I001 - Festival de Jazz - Ana"));
-        } finally {
-            System.setOut(saidaOriginal);
-        }
+        final String texto = executarDemonstracao();
+        assertTrue(texto.contains("Ingresso emitido: I001 - Festival de Jazz - Ana"));
     }
 
     @Test
     void deveExibirDadosAtualizadosNaDemonstracao() {
-        final ByteArrayOutputStream saida = new ByteArrayOutputStream();
-        final PrintStream saidaOriginal = System.out;
-
-        try (PrintStream captura = new PrintStream(saida)) {
-            System.setOut(captura);
-
-            App.main(new String[0]);
-
-            final String texto = saida.toString();
-            assertTrue(texto.contains("Evento atualizado: E001 - Festival de Jazz BH"));
-            assertTrue(texto.contains("Participante atualizado: P001 - Ana Silva"));
-            assertTrue(texto.contains("Titular atualizado: I001 - Bruno"));
-        } finally {
-            System.setOut(saidaOriginal);
-        }
+        final String texto = executarDemonstracao();
+        assertTrue(texto.contains("Evento atualizado: E001 - Festival de Jazz BH"));
+        assertTrue(texto.contains("Participante atualizado: P001 - Ana Silva"));
+        assertTrue(texto.contains("Titular atualizado: I001 - Bruno"));
     }
 
     @Test
     void deveExibirExclusoesNaDemonstracao() {
+        final String texto = executarDemonstracao();
+        assertTrue(texto.contains("Ingresso excluído: I001"));
+        assertTrue(texto.contains("Participante excluído: P001"));
+        assertTrue(texto.contains("Evento excluído: E001"));
+    }
+
+    private static String executarDemonstracao() {
         final ByteArrayOutputStream saida = new ByteArrayOutputStream();
         final PrintStream saidaOriginal = System.out;
 
         try (PrintStream captura = new PrintStream(saida)) {
             System.setOut(captura);
-
             App.main(new String[0]);
-
-            final String texto = saida.toString();
-            assertTrue(texto.contains("Ingresso excluído: I001"));
-            assertTrue(texto.contains("Participante excluído: P001"));
-            assertTrue(texto.contains("Evento excluído: E001"));
+            return saida.toString();
         } finally {
             System.setOut(saidaOriginal);
         }
