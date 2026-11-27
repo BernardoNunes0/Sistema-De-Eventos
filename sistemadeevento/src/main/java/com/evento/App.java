@@ -71,5 +71,19 @@ public final class App {
         System.out.println("Titular atualizado: "
                 + ingressoAtualizado.getCodigo() + " - "
                 + ingressoAtualizado.getTitular().getNome());
+        ingressos.excluirIngresso("I001");
+        if (ingressos.consultarIngresso("I001") == null) {
+            System.out.println("Ingresso excluído: I001");
+        }
+
+        participantes.excluir("P001");
+        if (participantes.buscarPorCodigo("P001") == null) {
+            System.out.println("Participante excluído: P001");
+        }
+
+        eventos.excluir("E001");
+        if (eventos.buscarPorCodigo("E001") == null) {
+            System.out.println("Evento excluído: E001");
+        }
     }
 }
