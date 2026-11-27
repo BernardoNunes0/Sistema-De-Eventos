@@ -27,11 +27,13 @@ public final class App {
 
     private static void executarMenu() {
         final CadastroDeEventos eventos = new CadastroDeEventos();
+        final CadastroDeParticipantes participantes = new CadastroDeParticipantes();
 
         try (Scanner teclado = new Scanner(System.in)) {
             while (true) {
                 System.out.println("Sistema de Eventos");
                 System.out.println("1 - Eventos");
+                System.out.println("2 - Participantes");
                 System.out.println("0 - Sair");
 
                 final String opcao = lerLinha(teclado, "Escolha uma opção: ");
@@ -40,6 +42,8 @@ public final class App {
                 }
                 if ("1".equals(opcao)) {
                     MenuEventos.executar(teclado, eventos);
+                } else if ("2".equals(opcao)) {
+                    MenuParticipantes.executar(teclado, participantes);
                 } else {
                     System.out.println("Opção indisponível.");
                 }
@@ -66,6 +70,7 @@ public final class App {
 
     private static void executarDemonstracao() {
         final CadastroDeEventos eventos = new CadastroDeEventos();
+        final CadastroDeParticipantes participantes = new CadastroDeParticipantes();
         final Evento evento = new Evento(
                 "E001",
                 "Festival de Jazz",
@@ -79,7 +84,6 @@ public final class App {
 
         System.out.println("Evento cadastrado: "
                 + cadastrado.getCodigo() + " - " + cadastrado.getNome());
-        final CadastroDeParticipantes participantes = new CadastroDeParticipantes();
         final Participante participante = new Participante("P001", "Ana", "ana@example.com");
 
         participantes.cadastrar(participante);
