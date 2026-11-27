@@ -59,4 +59,23 @@ class AppTest {
             System.setOut(saidaOriginal);
         }
     }
+
+    @Test
+    void deveExibirDadosAtualizadosNaDemonstracao() {
+        final ByteArrayOutputStream saida = new ByteArrayOutputStream();
+        final PrintStream saidaOriginal = System.out;
+
+        try (PrintStream captura = new PrintStream(saida)) {
+            System.setOut(captura);
+
+            App.main(new String[0]);
+
+            final String texto = saida.toString();
+            assertTrue(texto.contains("Evento atualizado: E001 - Festival de Jazz BH"));
+            assertTrue(texto.contains("Participante atualizado: P001 - Ana Silva"));
+            assertTrue(texto.contains("Titular atualizado: I001 - Bruno"));
+        } finally {
+            System.setOut(saidaOriginal);
+        }
+    }
 }
