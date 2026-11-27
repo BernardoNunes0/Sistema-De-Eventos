@@ -49,5 +49,27 @@ public final class App {
                 + ingressoEmitido.getCodigo() + " - "
                 + ingressoEmitido.getEvento().getNome() + " - "
                 + ingressoEmitido.getTitular().getNome());
+        cadastrado.alterarDados("Festival de Jazz BH",
+                cadastrado.getData(), cadastrado.getLocal());
+        eventos.atualizar(cadastrado);
+
+        final Evento eventoAtualizado = eventos.buscarPorCodigo("E001");
+        System.out.println("Evento atualizado: "
+                + eventoAtualizado.getCodigo() + " - " + eventoAtualizado.getNome());
+
+        participantes.atualizar("P001", "Ana Silva", "ana.silva@example.com");
+
+        final Participante participanteAtualizado = participantes.buscarPorCodigo("P001");
+        System.out.println("Participante atualizado: "
+                + participanteAtualizado.getCodigo() + " - " + participanteAtualizado.getNome());
+
+        final Participante bruno = new Participante("P002", "Bruno", "bruno@example.com");
+        participantes.cadastrar(bruno);
+        ingressos.alterarIngresso("I001", participantes.buscarPorCodigo("P002"));
+
+        final Ingresso ingressoAtualizado = ingressos.consultarIngresso("I001");
+        System.out.println("Titular atualizado: "
+                + ingressoAtualizado.getCodigo() + " - "
+                + ingressoAtualizado.getTitular().getNome());
     }
 }
